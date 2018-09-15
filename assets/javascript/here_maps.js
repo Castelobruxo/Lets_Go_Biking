@@ -167,9 +167,27 @@
 
             document.getElementById('directions').innerHTML = '';
             for (var i = 0; i < res.length; i++) {
-                document.getElementById('directions').innerHTML += '<span id="checkbox-' + i + '"><br /><input type="checkbox" class="directions-checkbox">' + (i + 1) +
-                                    '. ' + res[i].instruction + '</span>';
-            } 
+                document.getElementById('directions').innerHTML += '<span id="directions-span-' + i + '"><br /><input id="checkbox-' + i + '" type="checkbox" class="directions-checkbox">' + (i + 1) +
+                    '. ' + res[i].instruction + '</span>';
+            }
+
+            // var checkboxes = document.querySelectorAll('#directions.directions-checkbox');
+            // Array.from(checkboxes).forEach(function (box) {
+            //     box.addEventListener('click', function () {
+            //         console.log(this);
+            //         // var id = element.id.split('-')[1];
+            //         this.parentNode.removeChild(element);
+            //     })
+            // })
+            var checkboxes = document.querySelectorAll('input[id^=checkbox-]');
+            Array.from(checkboxes).forEach(function (box) {
+                box.addEventListener('change', function () {
+                    console.log(this.id.split('-')[1]);
+                    var span = document.getElementById('directions-span-' + this.id.split('-')[1]);
+                    span.parentNode.removeChild(span);
+                })
+            })
+            // console.log(checkboxes);
         }
     };
 
@@ -181,9 +199,7 @@
         EVENT HANDLERS
 
     */
-    // document.getElementsByClassName('directions-checkbox').addEventListener('change', function() {
-    //     console.log('hiii');
-    // })
+
 
     document.getElementById('start-btn').addEventListener('click', function () {
 
@@ -284,8 +300,8 @@
 
             // var placeDiv = S
             console.log(
-                'Name: ' + nearby[i].title + 
-                '\nCoords: ' + nearby[i].position[0] + ',' + nearby[i].position[1] + 
+                'Name: ' + nearby[i].title +
+                '\nCoords: ' + nearby[i].position[0] + ',' + nearby[i].position[1] +
                 '\nDistance: ' + '' + nearby[i].distance +
                 '\nAddress: ' + nearby[i].vicinity
             )
