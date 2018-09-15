@@ -165,10 +165,10 @@
             // Set the map's viewport to make the whole route visible:
             map.setViewBounds(routeLine.getBounds());
 
-
+            document.getElementById('directions').innerHTML = '';
             for (var i = 0; i < res.length; i++) {
-                document.getElementById('directions').innerHTML += '<br />' + (i + 1) +
-                                    '. ' + res[i].instruction;
+                document.getElementById('directions').innerHTML += '<span id="checkbox-' + i + '"><br /><input type="checkbox" class="directions-checkbox">' + (i + 1) +
+                                    '. ' + res[i].instruction + '</span>';
             } 
         }
     };
@@ -181,6 +181,10 @@
         EVENT HANDLERS
 
     */
+    // document.getElementsByClassName('directions-checkbox').addEventListener('change', function() {
+    //     console.log('hiii');
+    // })
+
     document.getElementById('start-btn').addEventListener('click', function () {
 
         document.getElementById('start-btn').classList.add('btn-pressed');
