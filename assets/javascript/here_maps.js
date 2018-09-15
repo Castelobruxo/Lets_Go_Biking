@@ -119,6 +119,8 @@
             endPoint,
             linestring;
         if (result.response.route) {
+            var res = result.response.route[0].leg[0].maneuver;
+
             // Pick the first route from the response:
             route = result.response.route[0];
             // Pick the route's shape:
@@ -162,6 +164,12 @@
 
             // Set the map's viewport to make the whole route visible:
             map.setViewBounds(routeLine.getBounds());
+
+
+            for (var i = 0; i < res.length; i++) {
+                document.getElementById('directions').innerHTML += '<br />' + (i + 1) +
+                                    '. ' + res[i].instruction;
+            } 
         }
     };
 
@@ -217,7 +225,7 @@
         // Create the parameters for the routing request:
         var routingParameters = {
             // The routing mode:
-            'mode': 'fastest;car',
+            'mode': 'fastest;bicycle',
             // The start point of the route:
             'waypoint0': 'geo!' + toFixed13(start[0]) + ',' + toFixed13(start[1].trim()),
             // 'waypoint0': 'geo!' + start[0].trim() + ',' + start[1].trim(),
@@ -231,7 +239,7 @@
             'representation': 'display'
         };
 
-        console.log(routingParameters);
+        // console.log(routingParameters);
 
         // Call calculateRoute() with the routing parameters,
         // the callback and an error callback function (called if a
@@ -266,9 +274,11 @@
     // the response:
     function onResult(data) {
         nearby = data.results.items;
-        console.log(data);
+        // console.log(data);
 
         for (var i = 0; i < nearby.length; i++) {
+
+            // var placeDiv = S
             console.log(
                 'Name: ' + nearby[i].title + 
                 '\nCoords: ' + nearby[i].position[0] + ',' + nearby[i].position[1] + 
