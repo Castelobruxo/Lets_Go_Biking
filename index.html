@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+<link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1533195059" />
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-places.js"></script>
+
+<!-- styles -->
+<link rel='stylesheet' href='assets/css/style.css'>
+</head>
+<body>
+  <div>Where to go: <input type='text' id='search-location'><button id='search-location-submit'>Search</button></div>
+  <div id="map" style="width: 100%; height: 400px; background: grey" ></div>
+
+  <button id='start-btn' class='btn-pressed'>Starting</button><input id='start-point' type='text' disabled placeholder='<- click the button and select a starting point on the map'>
+  <br />
+  <button id='end-btn'>Starting</button><input id='end-point' type='text' disabled placeholder='<- click the button and select an ending point on the map'>
+  <br />
+  <button id='find-route'>Calculate Route</button>
+  <div id='directions'></div>
+  
+  <!-- scripts -->
+  <script  type="text/javascript" charset="UTF-8" src='assets/javascript/here_maps.js'>
+
+  </script>
+</body>
+</html>
