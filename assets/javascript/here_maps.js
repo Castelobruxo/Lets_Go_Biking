@@ -1,7 +1,3 @@
-    /**
-     * Boilerplate map initialization code starts below:
-     */
-
     //Step 1: initialize communication with the platform
     var platform = new H.service.Platform({
         app_id: 'U0H0TkgUTq8csF1SBncQ',
@@ -14,44 +10,58 @@
         ppi: pixelRatio === 1 ? undefined : 320
     });
 
-    // Get an instance of the geocoding service:
-    var geocoder = platform.getGeocodingService();
 
-    // Get an instance of the routing service:
+    /**
+     * VARIABLES
+     *
+     * @param geocorder      Gets an instance of the geocoding service
+     * @param router         Gets an instance of the routing service\
+     * @param  {H.Map} map   A HERE Map instance within the application
+     * @param startClicked   Determines if the next input should go into the start location input box (set true by default)
+     * @param endClicked     Determines if the next input should go into the end location input box
+     * @param location_data  Holds places and geo coordinates that the user inputs (initialized to nothing)
+     * @param explore        Obtain an Explore object through which to submit search requests:
+     */
+    var geocoder = platform.getGeocodingService();
     var router = platform.getRoutingService();
+    var map;
+    var startClicked = true;
+    var endClicked = false;
+    locationData = {
+        start_lat: '',
+        start_long: '',
+        start_addr: '',
+        end_lat: '',
+        end_long: '',
+        end_addr: ''
+    }
+    var explore = new H.places.Explore(platform.getPlacesService()),
+        geoUserLocationResult, error;
 
 
 
     /**
-     * An event listener is added to listen to tap events on the map.
-     * Clicking on the map displays an alert box containing the latitude and longitude
-     * of the location pressed.
-     * @param  {H.Map} map      A HERE Map instance within the application
+     * FUNCTIONS
+     * 
      */
-    var map;
-    var startClicked = true;
-    var endClicked = false;
 
-
+    // creates an event listener for clicks/taps on the map
     function setUpClickListener(map) {
         // Attach an event listener to map display
         // obtain the coordinates and display in an alert box.
-        map.addEventListener('tap', function (evt) {
-            var coord = map.screenToGeo(evt.currentPointer.viewportX,
-                evt.currentPointer.viewportY);
-            // alert('Clicked at ' + Math.abs(coord.lat.toFixed(4)) +
-            //     ((coord.lat > 0) ? 'N' : 'S') +
-            //     ' ' + Math.abs(coord.lng.toFixed(4)) +
-            //     ((coord.lng > 0) ? 'E' : 'W'));
+        // map.addEventListener('tap', function (evt) {
+        //     var coord = map.screenToGeo(evt.currentPointer.viewportX,
+        //         evt.currentPointer.viewportY);
 
-            if (startClicked)
-                document.getElementById('start-point').value = Math.abs(coord.lat.toFixed(4)) + ', ' + Math.abs(coord.lng.toFixed(4));
-            else if (endClicked)
-                document.getElementById('end-point').value = Math.abs(coord.lat.toFixed(4)) + ', ' + Math.abs(coord.lng.toFixed(4));
+        //     if (startClicked)
+        //         document.getElementById('start-point').value = Math.abs(coord.lat.toFixed(4)) + ', ' + Math.abs(coord.lng.toFixed(4));
+        //     else if (endClicked)
+        //         document.getElementById('end-point').value = Math.abs(coord.lat.toFixed(4)) + ', ' + Math.abs(coord.lng.toFixed(4));
 
-        });
+        // });
     }
 
+    // get the current location of the device and send it to showPosition()
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -60,14 +70,12 @@
         }
     }
 
+    // set the map to the device's current location 
     function showPosition(position) {
-        console.log(position.coords.latitude)
-        console.log(position.coords.longitude)
+        // console.log(position.coords.latitude)
+        // console.log(position.coords.longitude)
 
-        //Step 2: initialize a map
-        // var map;
-
-
+        // set the map variable
         map = new H.Map(document.getElementById('map'),
             defaultLayers.normal.map, {
                 center: {
@@ -84,6 +92,7 @@
         // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
         var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 
+        // setup event listender to add touch/click functionality
         setUpClickListener(map);
 
     }
@@ -92,21 +101,28 @@
     var setGeoPoints = function (result) {
         console.log(result);
         var locations = result.Response.View[0].Result,
-            position,
             marker;
-        // Add a marker for each location found
-        // for (i = 0; i < locations.length; i++) {
-        position = {
+
+        // set a marker on the map for the entered location
+        marker = new H.map.Marker({
             lat: locations[0].Location.DisplayPosition.Latitude,
             lng: locations[0].Location.DisplayPosition.Longitude
-        };
-        marker = new H.map.Marker(position);
+        });
         map.addObject(marker);
-        // }
-        if (startClicked)
-            document.getElementById('start-point').value = position.lat + ', ' + position.lng;
-        else
-            document.getElementById('end-point').value = position.lat + ', ' + position.lng;
+
+        if (startClicked) {
+            locationData.start_lat = locations[0].Location.DisplayPosition.Latitude;
+            locationData.start_long = locations[0].Location.DisplayPosition.Longitude;
+            locationData.start_addr = document.getElementById('search-location').value;
+            document.getElementById('start-point').value = locationData.start_lat + ', ' + locationData.start_long;
+            document.getElementById('start-point-p').innerText = locationData.start_addr;
+        } else {
+            locationData.end_lat = locations[0].Location.DisplayPosition.Latitude;
+            locationData.end_long = locations[0].Location.DisplayPosition.Longitude;
+            locationData.end_addr = document.getElementById('search-location').value;
+            document.getElementById('end-point').value = locationData.end_lat + ', ' + locationData.end_long;
+            document.getElementById('end-point-p').innerText = locationData.end_addr;
+        }
 
     };
 
@@ -191,7 +207,58 @@
         }
     };
 
+    function toFixed13(val) {
+        var num = parseFloat(val);
+        return num.toFixed(13);
+    }
 
+    // display the results from the nearby search request
+    var displayNearbyPOI = function(data) {
+        nearby = data.results.items;
+        // console.log(data);
+
+        for (var i = 0; i < nearby.length; i++) {
+
+            // var placeDiv = S
+            console.log(
+                'Name: ' + nearby[i].title +
+                '\nCoords: ' + nearby[i].position[0] + ',' + nearby[i].position[1] +
+                '\nDistance: ' + '' + nearby[i].distance +
+                '\nAddress: ' + nearby[i].vicinity
+            )
+        }
+    }
+
+    // Define a callback to handle errors:
+    var onError = function(data) {
+        error = JSON.stringify(data);
+        alert(error);
+    }
+
+    // find nearby POIs with the explorer
+    var findNearby = function (cat) {
+        if (!locationData.start_lat) {
+            alert('please enter a starting location');
+            return;
+        }
+
+        // Define search parameters:
+        var params = {
+                // Look for places matching the category "eat and drink":
+                'cat': cat
+            },
+            // Define a headers object required by the request() method:
+            headers = {
+                // Location context in header reflecting the position of the user device:
+                'Geolocation': 'geo:' + locationData.start_lat + ',' + locationData.start_long
+            };
+
+        // Run a search request with parameters, headers, and callback
+        // functions:
+        explore.request(params, headers, displayNearbyPOI, onError);
+    }
+
+    
 
 
     /*
@@ -199,7 +266,6 @@
         EVENT HANDLERS
 
     */
-
 
     document.getElementById('start-btn').addEventListener('click', function () {
 
@@ -232,34 +298,26 @@
         });
     })
 
-    function toFixed13(val) {
-        var num = parseFloat(val);
-        return num.toFixed(13);
-    }
 
     document.getElementById('find-route').addEventListener('click', function () {
         // get starting and ending point
-        var start = document.getElementById('start-point').value.split(',');
-        var end = document.getElementById('end-point').value.split(',');
+        // var start = document.getElementById('start-point').value.split(',');
+        // var end = document.getElementById('end-point').value.split(',');
 
         // Create the parameters for the routing request:
         var routingParameters = {
             // The routing mode:
             'mode': 'fastest;bicycle',
             // The start point of the route:
-            'waypoint0': 'geo!' + toFixed13(start[0]) + ',' + toFixed13(start[1].trim()),
-            // 'waypoint0': 'geo!' + start[0].trim() + ',' + start[1].trim(),
-            // 'waypoint0': 'geo!50.1120423728813,8.68340740740811',
+            // 'waypoint0': 'geo!' + toFixed13(start[0]) + ',' + toFixed13(start[1].trim()),
+            'waypoint0': 'geo!' + locationData.start_lat + ',' + locationData.start_long,
             // The end point of the route:
-            'waypoint1': 'geo!' + toFixed13(end[0].trim()) + ',' + toFixed13(end[1].trim()),
-            // 'waypoint1': 'geo!' + end[0].trim() + ',' + end[1].trim(),
-            // 'waypoint1': 'geo!52.5309916298853,13.3846220493377',
+            // 'waypoint1': 'geo!' + toFixed13(end[0].trim()) + ',' + toFixed13(end[1].trim()),
+            'waypoint1': 'geo!' + locationData.end_lat + ',' + locationData.end_long,
             // To retrieve the shape of the route we choose the route
             // representation mode 'display'
             'representation': 'display'
         };
-
-        // console.log(routingParameters);
 
         // Call calculateRoute() with the routing parameters,
         // the callback and an error callback function (called if a
@@ -271,48 +329,10 @@
     })
 
 
-    // Obtain an Explore object through which to submit search requests:
-    var explore = new H.places.Explore(platform.getPlacesService()),
-        geoUserLocationResult, error;
 
-    // Define search parameters:
-    var params = {
-            // Look for places matching the category "eat and drink":
-            'cat': 'going-out'
-        },
-        // Define a headers object required by the request() method:
-        headers = {
-            // Location context in header reflecting the position of the user device:
-            'Geolocation': 'geo:40.85992,-81.29529'
-        };
 
-    // Run a search request with parameters, headers, and callback
-    // functions:
-    explore.request(params, headers, onResult, onError);
 
-    // Success handler - fetch the first set of detailed place data from
-    // the response:
-    function onResult(data) {
-        nearby = data.results.items;
-        // console.log(data);
 
-        for (var i = 0; i < nearby.length; i++) {
-
-            // var placeDiv = S
-            console.log(
-                'Name: ' + nearby[i].title +
-                '\nCoords: ' + nearby[i].position[0] + ',' + nearby[i].position[1] +
-                '\nDistance: ' + '' + nearby[i].distance +
-                '\nAddress: ' + nearby[i].vicinity
-            )
-        }
-    }
-
-    // Define a callback to handle errors:
-    function onError(data) {
-        error = JSON.stringify(data);
-        alert(error);
-    }
 
 
 
