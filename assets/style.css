@@ -84,33 +84,42 @@ button:focus{
 }
 
 .drop {
+    float: left;
     display: block;
     margin: 0 auto;
-    height: 30px;
+    height: 40px;
     border-radius: 10px;
     background-color: #999999;
     border: 2px solid #696969;
     font-weight: bold;
-    width: 60%;
-    float: left;
+    width: 50%;
+    padding: 5px;
 }
 
-.gobtn {
-    float: left;
-    width: 35%;
-    margin-left: 5%;
+.opbtn {
+    clear: both;
+    width: 60px;
+    height: 50px;
+    margin-top: 5px;
     border: 2px solid #696969;
     border-radius: 10px;
     background-color: #90EE90;
 }
 
-.localoptions {
-    background-color: #999999;
-    padding: 12px;
-    border-radius: 10px;
-    margin-top: 20px;
+.localoptionbox {
     display: none;
 }
+
+.localsearch {
+    margin-top: 10px;
+}
+
+.card {
+    width: 250px;
+    float: left;
+    padding: 20px;
+}
+
 
 
 
