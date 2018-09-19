@@ -3,21 +3,140 @@
 
 <head>
   <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+
+  <!-- styles -->
   <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1533195059" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
+    crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://js.cit.api.here.com/v3/3.0/mapsjs-ui.css" />
+  <link rel='stylesheet' href='assets/css/style.css'>
+
+  <!-- scripts -->
   <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
   <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
   <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
   <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
   <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-places.js"></script>
 
-  <!-- styles -->
-  <link rel="stylesheet" type="text/css" href="https://js.cit.api.here.com/v3/3.0/mapsjs-ui.css" />
-  <link rel='stylesheet' href='assets/css/style.css'>
+  <title>Let's Go Biking!</title>
 </head>
 
 <body>
-    10900 Euclid Ave, Cleveland, OH 44106 <br />
-    5994 sunscape drive louisville 
+  <div class="container head">
+    <div class="jumbotron" style="background-color:#90EE90">
+      <img src="assets/images/bicycle.png" alt="bike" class="headimg">
+      <h1 class="headtext">Let's Go Biking!</h1>
+      <p class="headtext">Plan a trip and bike your city with confidence!</p>
+    </div>
+  </div>
+  <div class="container weatherclip">
+    <div class="row">
+      <div class="col-sm-3">
+        <p class="whatweather">What is the weather like now?</p>
+        <p class="weathertext">Sunny!</p>
+        <img src="assets/images/sun.png" alt="bike" class="weatherimg">
+      </div>
+      <div class="col-sm-3">
+        <p class="whatweather">What will the weather be in 3 hours?</p>
+        <p class="weathertext">Cloudy!</p>
+        <img src="assets/images/cloud.png" alt="bike" class="weatherimg">
+      </div>
+      <div class="col-sm-3">
+        <p class="whatweather">What will the weather be in 6 hours?</p>
+        <p class="weathertext">Rainy!</p>
+        <img src="assets/images/rain.png" alt="bike" class="weatherimg">
+      </div>
+      <div class="col-sm-3">
+        <p class="whatweather">What will the weather be in 9 hours?</p>
+        <p class="weathertext">Dark!</p>
+        <img src="assets/images/moon.png" alt="bike" class="weatherimg">
+      </div>
+    </div>
+  </div>
+
+  <div class="container enterroute">
+    <div class="row">
+      <div class="col-sm-2">
+        <p class="whatweather">Starting Point:</p>
+      </div>
+      <div class="col-sm-3">
+        <input type="text" class="rinput startinput">
+      </div>
+      <div class="col-sm-2">
+        <p class="whatweather">Ending Point:</p>
+      </div>
+      <div class="col-sm-3">
+        <input type="text" class="rinput endinput">
+      </div>
+      <div class="col-sm-2">
+        <button class="rtbtn">Get Route!</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container localsearch">
+    <div class="row">
+      <div class="col-sm-12">
+        <select class="drop">
+          <option value="0">Suggested Locations:</option>
+          <option value="1">Restaurant</option>
+          <option value="2">Drug Store</option>
+          <option value="3">Park</option>
+          <option value="4">Museum</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <button class="gobtn opbtn">Look</button>
+        <button class="clearbtn opbtn">Clear</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container localoptionbox">
+    <div class="row localoptions">
+
+    </div>
+  </div>
+
+  <div class="container mapcont">
+    <div class="row">
+      <div class="col-sm-6">
+        <img src="assets/images/exmap.jpg" alt="map" class="map">
+      </div>
+      <div class="col-sm-6 directioncol">
+        <div class="row direction">
+          <div class="col-sm-12">
+            <p>First Step</p>
+          </div>
+        </div>
+        <div class="row direction">
+          <div class="col-sm-12">
+            <p>Next Step</p>
+          </div>
+        </div>
+        <div class="row direction">
+          <div class="col-sm-12">
+            <p>Next Step</p>
+          </div>
+        </div>
+        <div class="row direction">
+          <div class="col-sm-12">
+            <p>Next Step</p>
+          </div>
+        </div>
+        <div class="row direction">
+          <div class="col-sm-12">
+            <p>Next Step</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  10900 Euclid Ave, Cleveland, OH 44106 <br />
+  5994 sunscape drive louisville
   <div>Where to go: <input type='text' id='search-location' value='10900 Euclid Ave, Cleveland, OH 44106'><button id='search-location-submit'>Search</button></div>
   <button id='start-btn' class='btn-pressed'>Start</button><br />
   <input id='start-point' type='text' disabled placeholder='<- click the button and select a starting point on the map'>
@@ -30,15 +149,14 @@
   <button id='find-route'>Calculate Route</button>
   <div id="map" style="width: 100%; height: 400px; background: grey"></div>
 
-  
+
   <div id='directions'></div>
 
   <!-- scripts -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
-  <script type="text/javascript" charset="UTF-8" src='assets/javascript/here_maps.js'>
-
-  </script>
+  <script type="text/javascript" charset="UTF-8" src='assets/javascript/here_maps.js'></script>
+  <script src="assets/javascript/app.js"></script>
 </body>
 
 </html>
