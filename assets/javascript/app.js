@@ -28,13 +28,14 @@ var populateop = function(arr) {
 }
 
 $(".gobtn").on("click", function() {
-    $(".localoptions").html("");
-    if($(".drop").val() == 1) {
-        populateop(restop);
-    }
-    if($(".drop").val() == 2) {
-        populateop(drugop);
-    }
+    // $(".localoptions").html("");
+    // if($(".drop").val() == 1) {
+    //     populateop(restop);
+    // }
+    // if($(".drop").val() == 2) {
+    //     populateop(drugop);
+    // }
+    $(".localoptionbox").css("display", "block")
 });
 
 $(".clearbtn").on("click", function() {

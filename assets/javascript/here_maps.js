@@ -213,24 +213,54 @@
     }
 
     // display the results from the nearby search request
-    var displayNearbyPOI = function(data) {
+    var displayNearbyPOI = function (data) {
         nearby = data.results.items;
         // console.log(data);
 
         for (var i = 0; i < nearby.length; i++) {
 
-            // var placeDiv = S
-            console.log(
-                'Name: ' + nearby[i].title +
-                '\nCoords: ' + nearby[i].position[0] + ',' + nearby[i].position[1] +
-                '\nDistance: ' + '' + nearby[i].distance +
-                '\nAddress: ' + nearby[i].vicinity
-            )
+            //create new POI here
+            var row;
+
+            if (i == 0) {
+                row = $('<div>')
+                    .addClass('row')
+            }
+
+            if (i % 4 == 0 && i != 0) {
+                // append the last row
+                $('.localoptions').append(row).append('<hr>');
+
+                // reset row
+                row = $('<div>')
+                    .addClass('row')
+            }
+
+            var text = $('<div>')
+                .addClass('poi-card')
+                .html(
+                    'Name: ' + nearby[i].title +
+                    '<br />Coords: ' + nearby[i].position[0] + ',' + nearby[i].position[1] +
+                    '<br />Distance: ' + '' + nearby[i].distance +
+                    '<br />Address: ' + nearby[i].vicinity
+                )
+
+            var div = $('<div>')
+                .addClass('col-md-3 col-sm-2 col-xs-12 ')
+                // .attr('style', 'margin: 2px 0px')
+                .html(text);
+
+            // append the new colum on the row
+            row.append(div);
+
+            if (i == (nearby.length - 1))
+                $('.localoptions').append(row);
+
         }
     }
 
     // Define a callback to handle errors:
-    var onError = function(data) {
+    var onError = function (data) {
         error = JSON.stringify(data);
         alert(error);
     }
@@ -258,7 +288,7 @@
         explore.request(params, headers, displayNearbyPOI, onError);
     }
 
-    
+
 
 
     /*
@@ -266,6 +296,16 @@
         EVENT HANDLERS
 
     */
+
+    $('#nearby-select').on('change', function () {
+        var cat = $('#nearby-select').val();
+
+        // clear the results from the last chane
+        $('.localoptions').empty();
+
+        // console.log(cat);
+        findNearby(cat);
+    });
 
     document.getElementById('start-btn').addEventListener('click', function () {
 

@@ -78,12 +78,12 @@
   <div class="container localsearch">
     <div class="row">
       <div class="col-sm-12">
-        <select class="drop">
+        <select id='nearby-select' class="drop">
           <option value="0">Suggested Locations:</option>
-          <option value="1">Restaurant</option>
-          <option value="2">Drug Store</option>
-          <option value="3">Park</option>
-          <option value="4">Museum</option>
+          <option value="eat-drink">Food</option>
+          <option value="shopping">Shopping</option>
+          <option value="leisure-outdoor">Parks and Rec</option>
+          <option value="sights-musuems">Museums and Sights</option>
         </select>
       </div>
     </div>
@@ -96,18 +96,33 @@
   </div>
 
   <div class="container localoptionbox">
-    <div class="row localoptions">
+    <div class="localoptions">
 
     </div>
   </div>
 
   <div class="container mapcont">
     <div class="row">
-      <div class="col-sm-6">
-        <img src="assets/images/exmap.jpg" alt="map" class="map">
-      </div>
-      <div class="col-sm-6 directioncol">
-        <div class="row direction">
+      <div id="map" class='col-sm-6' style="height: 350px"></div>
+      
+      <div class="col-sm-6 direction-col">
+        <p class='direction-p'>
+          <input type='checkbox'> Direction #1
+        </p >
+        <hr class='direction-hr'>
+        <p class='direction-p'>
+            <input type='checkbox'> Direction #2
+        </p>
+        <hr class='direction-hr'>
+        <p class='direction-p'>
+            <input type='checkbox'> Direction #3
+        </p>
+        <hr class='direction-hr'>
+        <p class='direction-p'>
+            <input type='checkbox'> Direction #4
+        </p>
+        <!-- <hr class='direction-hr'> -->
+        <!-- <div class="row direction">
           <div class="col-sm-12">
             <p>First Step</p>
           </div>
@@ -131,13 +146,13 @@
           <div class="col-sm-12">
             <p>Next Step</p>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
   10900 Euclid Ave, Cleveland, OH 44106 <br />
   5994 sunscape drive louisville
-  <div>Where to go: <input type='text' id='search-location' value='10900 Euclid Ave, Cleveland, OH 44106'><button id='search-location-submit'>Search</button></div>
+  <div>Where to go: <input type='text' id='search-location' value='5994 sunscape drive louisville'><button id='search-location-submit'>Search</button></div>
   <button id='start-btn' class='btn-pressed'>Start</button><br />
   <input id='start-point' type='text' disabled placeholder='<- click the button and select a starting point on the map'>
   <p id='start-point-p'></p>
@@ -147,7 +162,7 @@
   <p id="end-point-p"></p>
   <br />
   <button id='find-route'>Calculate Route</button>
-  <div id="map" style="width: 100%; height: 400px; background: grey"></div>
+  <!-- <div id="map" style="width: 100%; height: 400px; background: grey"></div> -->
 
 
   <div id='directions'></div>

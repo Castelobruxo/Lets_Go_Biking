@@ -9,7 +9,6 @@ body {
 .headimg {
     width: 200px;
     height: 150px;
-    margin: 20px;
     float: right;
 }
 
@@ -49,7 +48,7 @@ body {
     border-bottom: 2px solid black;
 }
 
-.directioncol {
+.direction-col {
     border: 2px solid black;
 }
 
@@ -124,5 +123,16 @@ button:focus{
     padding: 20px;
 }
 
+.direction-p {
+    margin: 3px 0px;
+}
+.direction-hr {
+    margin: 2px;
+}
 
-
+.poi-card {
+    background-color: #ddd;
+    border-radius: 5px;
+    padding: 4px;
+    /* height: 125px; */
+}
