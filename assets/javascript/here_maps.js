@@ -181,10 +181,44 @@
             // Set the map's viewport to make the whole route visible:
             map.setViewBounds(routeLine.getBounds());
 
-            document.getElementById('directions').innerHTML = '';
+            // document.getElementById('directions').innerHTML = '';
+            // for (var i = 0; i < res.length; i++) {
+            //     document.getElementById('directions').innerHTML += 
+            //             '<span id="directions-span-' + i + '">' + 
+            //             '<br />' + 
+            //             '<input id="checkbox-' + i + '" type="checkbox" class="directions-checkbox">' + (i + 1) +
+            //         '. ' + res[i].instruction + '</span>';
+            // }
+
+            // $('.direction-col').empty();
+            $('#all-instructions').empty();
             for (var i = 0; i < res.length; i++) {
-                document.getElementById('directions').innerHTML += '<span id="directions-span-' + i + '"><br /><input id="checkbox-' + i + '" type="checkbox" class="directions-checkbox">' + (i + 1) +
-                    '. ' + res[i].instruction + '</span>';
+                var hr = $('<hr>')
+                    .addClass('direction-hr')
+
+                var p = $('<p>')
+                    .addClass('direction-p')
+                    .attr('id', 'direction-p-' + i)
+
+                var input = $('<input type="checkbox">')
+                    .attr('id', 'direction-checkbox-' + i)
+                if (i)
+                    input.addClass('hide');
+
+                var span = $('<span>')
+                    .html(
+                        res[i].instruction
+                    )
+
+                // p.append(input).append(span).append(hr);
+                p.append(span).append(hr);
+
+                if (i)
+                    $('#all-instructions').append(p);
+                else {
+                    $('#all-instructions').empty(); // get rid of the filler text
+                    $('#next-instruction').empty().append(p); // append the first instruction into the top box
+                }
             }
 
             // var checkboxes = document.querySelectorAll('#directions.directions-checkbox');
@@ -195,14 +229,23 @@
             //         this.parentNode.removeChild(element);
             //     })
             // })
-            var checkboxes = document.querySelectorAll('input[id^=checkbox-]');
-            Array.from(checkboxes).forEach(function (box) {
-                box.addEventListener('change', function () {
-                    console.log(this.id.split('-')[1]);
-                    var span = document.getElementById('directions-span-' + this.id.split('-')[1]);
-                    span.parentNode.removeChild(span);
-                })
-            })
+            // var checkboxes = document.querySelectorAll('input[id^=direction-checkbox-]');
+            // Array.from(checkboxes).forEach(function (box) {
+            //     box.addEventListener('change', function () {
+            //         // console.log(this.id.split('-')[2]);
+            //         var id = this.id.split('-')[2];
+            //         var current = document.getElementById('direction-p-' + id);
+            //         current.parentNode.removeChild(current);
+
+            //         // get next instruction and put it in the 'next' box 
+            //         var next = $('#direction-p-' + (parseInt(id) + 1));
+            //         // console.log('#direction-checkbox-' + (parseInt(id) + 1));
+            //         // $('#direction-checkbox-' + (parseInt(id) + 1))
+            //         //     .removeClass('hide');
+
+            //         $('#next-instruction').empty().append(next);
+            //     })
+            // })
             // console.log(checkboxes);
         }
     };
@@ -246,9 +289,13 @@
                 )
 
             var div = $('<div>')
-                .addClass('col-md-3 col-sm-2 col-xs-12 ')
+                .addClass('col-md-3 col-sm-2 col-xs-12 nearby-poi')
                 // .attr('style', 'margin: 2px 0px')
-                .html(text);
+                .html(text)
+                .attr('data-lat', nearby[i].position[0])
+                .attr('data-long', nearby[i].position[1])
+                .attr('data-name', nearby[i].title)
+                .attr('data-address', nearby[i].vicinity)
 
             // append the new colum on the row
             row.append(div);
@@ -267,8 +314,11 @@
 
     // find nearby POIs with the explorer
     var findNearby = function (cat) {
+        $('.startinput').removeClass('input-error');
+
         if (!locationData.start_lat) {
-            alert('please enter a starting location');
+            // alert('please enter a starting location');
+            $('.startinput').addClass('input-error');
             return;
         }
 
@@ -296,6 +346,35 @@
         EVENT HANDLERS
 
     */
+
+    $('body').on('click', '.nearby-poi', function() {
+        var lat = $(this).attr('data-lat');
+        var long = $(this).attr('data-long');
+        var address = $(this).attr('data-address');
+        var name = $(this).attr('data-name');
+
+        locationData.end_lat = lat;
+        locationData.end_long = long;
+        locationData.end_addr = address;
+        $('#end-point').val(lat + ',' + long);
+        $('#end-point-p').text(name);
+        // console.log(data);
+
+    })
+
+    $('#get-next-instruction').on('click', function () {
+
+        if (!$('#next-instruction').children().length)
+            return;
+
+        var currentId = $('#next-instruction').children()[0].id.split('-')[2];
+
+        var next = $('#direction-p-' + (parseInt(currentId) + 1));
+
+        next.attr('style', 'font-weight:bold;font-size:1.4em;margin:5px;');
+
+        $('#next-instruction').empty().append(next);
+    })
 
     $('#nearby-select').on('change', function () {
         var cat = $('#nearby-select').val();

@@ -23,149 +23,130 @@
 </head>
 
 <body>
-  <div class="container head">
-    <div class="jumbotron" style="background-color:#90EE90">
-      <img src="assets/images/bicycle.png" alt="bike" class="headimg">
-      <h1 class="headtext">Let's Go Biking!</h1>
-      <p class="headtext">Plan a trip and bike your city with confidence!</p>
-    </div>
-  </div>
-  <div class="container weatherclip">
-    <div class="row">
-      <div class="col-sm-3">
-        <p class="whatweather">What is the weather like now?</p>
-        <p class="weathertext">Sunny!</p>
-        <img src="assets/images/sun.png" alt="bike" class="weatherimg">
-      </div>
-      <div class="col-sm-3">
-        <p class="whatweather">What will the weather be in 3 hours?</p>
-        <p class="weathertext">Cloudy!</p>
-        <img src="assets/images/cloud.png" alt="bike" class="weatherimg">
-      </div>
-      <div class="col-sm-3">
-        <p class="whatweather">What will the weather be in 6 hours?</p>
-        <p class="weathertext">Rainy!</p>
-        <img src="assets/images/rain.png" alt="bike" class="weatherimg">
-      </div>
-      <div class="col-sm-3">
-        <p class="whatweather">What will the weather be in 9 hours?</p>
-        <p class="weathertext">Dark!</p>
-        <img src="assets/images/moon.png" alt="bike" class="weatherimg">
+  <div class="container">
+    <div class="head">
+      <div class="jumbotron" style="background-color:#90EE90">
+        <img src="assets/images/bicycle.png" alt="bike" class="headimg">
+        <h1 class="headtext">Let's Go Biking!</h1>
+        <p class="headtext">Plan a trip and bike your city with confidence!</p>
       </div>
     </div>
-  </div>
+    <div class="weatherclip">
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="whatweather">What is the weather like now?</p>
+          <p class="weathertext">Sunny!</p>
+          <img src="assets/images/sun.png" alt="bike" class="weatherimg">
+        </div>
+        <div class="col-sm-3">
+          <p class="whatweather">What will the weather be in 3 hours?</p>
+          <p class="weathertext">Cloudy!</p>
+          <img src="assets/images/cloud.png" alt="bike" class="weatherimg">
+        </div>
+        <div class="col-sm-3">
+          <p class="whatweather">What will the weather be in 6 hours?</p>
+          <p class="weathertext">Rainy!</p>
+          <img src="assets/images/rain.png" alt="bike" class="weatherimg">
+        </div>
+        <div class="col-sm-3">
+          <p class="whatweather">What will the weather be in 9 hours?</p>
+          <p class="weathertext">Dark!</p>
+          <img src="assets/images/moon.png" alt="bike" class="weatherimg">
+        </div>
+      </div>
+    </div>
 
-  <div class="container enterroute">
-    <div class="row">
-      <div class="col-sm-2">
-        <p class="whatweather">Starting Point:</p>
-      </div>
-      <div class="col-sm-3">
-        <input type="text" class="rinput startinput">
-      </div>
-      <div class="col-sm-2">
-        <p class="whatweather">Ending Point:</p>
-      </div>
-      <div class="col-sm-3">
-        <input type="text" class="rinput endinput">
-      </div>
-      <div class="col-sm-2">
-        <button class="rtbtn">Get Route!</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="container localsearch">
-    <div class="row">
-      <div class="col-sm-12">
-        <select id='nearby-select' class="drop">
-          <option value="0">Suggested Locations:</option>
-          <option value="eat-drink">Food</option>
-          <option value="shopping">Shopping</option>
-          <option value="leisure-outdoor">Parks and Rec</option>
-          <option value="sights-musuems">Museums and Sights</option>
-        </select>
+    <div class="enterroute">
+      <div class="row">
+        <div class="col-sm-2">
+          <p class="whatweather">Starting Point:</p>
+        </div>
+        <div class="col-sm-3">
+          <input type="text" class="rinput startinput">
+        </div>
+        <div class="col-sm-2">
+          <p class="whatweather">Ending Point:</p>
+        </div>
+        <div class="col-sm-3">
+          <input type="text" class="rinput endinput">
+        </div>
+        <div class="col-sm-2">
+          <button class="rtbtn">Get Route!</button>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <button class="gobtn opbtn">Look</button>
-        <button class="clearbtn opbtn">Clear</button>
+
+    <div class="localsearch">
+      <div class="row">
+        <div class="col-sm-12">
+          <select id='nearby-select' class="drop">
+            <option value="0">Suggested Locations:</option>
+            <option value="eat-drink">Food</option>
+            <option value="shopping">Shopping</option>
+            <option value="leisure-outdoor">Parks and Rec</option>
+            <option value="sights-musuems">Museums and Sights</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <button class="gobtn opbtn">Look</button>
+          <button class="clearbtn opbtn">Clear</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="container localoptionbox">
-    <div class="localoptions">
+    <div class="localoptionbox">
+      <div class="localoptions">
 
+      </div>
     </div>
-  </div>
 
-  <div class="container mapcont">
-    <div class="row">
-      <div id="map" class='col-sm-6' style="height: 350px"></div>
-      
-      <div class="col-sm-6 direction-col">
-        <p class='direction-p'>
+    <div class="mapcont">
+      <div class="row">
+        <div class=' col-md-6 col-sm-12' style="height:350px;">
+          <div id="map" style='height:100%;width:100%;'></div>
+        </div>
+
+        <div class=" col-md-6 col-sm-12 direction-col">
+          <div>
+            <div style='width:100%;text-align:center;'>
+              <h4 style='margin-top:5px;'>Next instruction:</h4>
+              <input type='button' class='btn btn-success' value='Next!' id='get-next-instruction'>
+              <div id="next-instruction">---</div>
+            </div>
+            <div id="all-instructions">
+              <p style='color:gray;width:60%;margin: 0 auto;margin-top:20%;text-align:center;'>Your directions will
+                appear here when you create a new route!</p>
+            </div>
+          </div>
+          <!-- <p class='direction-p'>  
           <input type='checkbox'> Direction #1
         </p >
-        <hr class='direction-hr'>
-        <p class='direction-p'>
-            <input type='checkbox'> Direction #2
-        </p>
-        <hr class='direction-hr'>
-        <p class='direction-p'>
-            <input type='checkbox'> Direction #3
-        </p>
-        <hr class='direction-hr'>
-        <p class='direction-p'>
-            <input type='checkbox'> Direction #4
-        </p>
-        <!-- <hr class='direction-hr'> -->
-        <!-- <div class="row direction">
-          <div class="col-sm-12">
-            <p>First Step</p>
-          </div>
+        <hr class='direction-hr'> -->
+
+
+
         </div>
-        <div class="row direction">
-          <div class="col-sm-12">
-            <p>Next Step</p>
-          </div>
-        </div>
-        <div class="row direction">
-          <div class="col-sm-12">
-            <p>Next Step</p>
-          </div>
-        </div>
-        <div class="row direction">
-          <div class="col-sm-12">
-            <p>Next Step</p>
-          </div>
-        </div>
-        <div class="row direction">
-          <div class="col-sm-12">
-            <p>Next Step</p>
-          </div>
-        </div> -->
       </div>
     </div>
+    10900 Euclid Ave, Cleveland, OH 44106 <br />
+    5994 sunscape drive louisville
+    <div>Where to go: <input type='text' id='search-location' value='5994 sunscape drive louisville'><button id='search-location-submit'>Search</button></div>
+    <button id='start-btn' class='btn-pressed'>Start</button><br />
+    <input id='start-point' type='text' disabled placeholder='<- click the button and select a starting point on the map'>
+    <p id='start-point-p'></p>
+    <br />
+    <button id='end-btn'>End</button><br />
+    <input id='end-point' type='text' disabled placeholder='<- click the button and select an ending point on the map'>
+    <p id="end-point-p"></p>
+    <br />
+    <button id='find-route'>Calculate Route</button>
+    <!-- <div id="map" style="width: 100%; height: 400px; background: grey"></div> -->
+
+
+    <div id='directions'></div>
   </div>
-  10900 Euclid Ave, Cleveland, OH 44106 <br />
-  5994 sunscape drive louisville
-  <div>Where to go: <input type='text' id='search-location' value='5994 sunscape drive louisville'><button id='search-location-submit'>Search</button></div>
-  <button id='start-btn' class='btn-pressed'>Start</button><br />
-  <input id='start-point' type='text' disabled placeholder='<- click the button and select a starting point on the map'>
-  <p id='start-point-p'></p>
-  <br />
-  <button id='end-btn'>End</button><br />
-  <input id='end-point' type='text' disabled placeholder='<- click the button and select an ending point on the map'>
-  <p id="end-point-p"></p>
-  <br />
-  <button id='find-route'>Calculate Route</button>
-  <!-- <div id="map" style="width: 100%; height: 400px; background: grey"></div> -->
-
-
-  <div id='directions'></div>
 
   <!-- scripts -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

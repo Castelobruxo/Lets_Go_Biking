@@ -2,6 +2,10 @@
     background-color: #aaa;
 }
 
+.input-error {
+    border: 3px solid rgba(255, 0, 0, 0.4);
+}
+
 body {
     padding: 50px;
 }
@@ -50,6 +54,12 @@ body {
 
 .direction-col {
     border: 2px solid black;
+    height: 350px;
+    background: rgb(220, 220, 220);
+    overflow-y: scroll;
+}
+.direction-col::-webkit-scrollbar {
+    width: 0;
 }
 
 .enterroute {
@@ -135,4 +145,8 @@ button:focus{
     border-radius: 5px;
     padding: 4px;
     /* height: 125px; */
+}
+
+.hide {
+    display: none;
 }
