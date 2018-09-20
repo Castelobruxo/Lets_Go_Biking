@@ -120,8 +120,13 @@ button:focus{
 }
 
 .localoptionbox {
+    /* display: none; */
+}
+
+.hide {
     display: none;
 }
+
 
 .localsearch {
     margin-top: 10px;
