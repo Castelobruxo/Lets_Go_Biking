@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <title>Let's Go Biking</title>
+</head>
+<body>
+        <div class="container head">
+                <div class="jumbotron" style="background-color:#90EE90">
+                  <img src="assets/images/bicycle.png" alt="bike" class="headimg">
+                  <h1 class = "headtext">Let's Go Biking!</h1> 
+                  <p class = "headtext">Plan a trip and bike your city with confidence!</p> 
+                </div>
+        </div>
+        <div class = "container weatherclip">
+            <div class = "row">
+                <div class = "col-sm-3">
+                    <p class = "whatweather">What is the weather like now?</p>
+                    <p id = "weathertext-0">Sunny!</p>
+                    <img src="assets/images/sun.png" alt="bike" id="weatherimg-0">
+                </div>
+                <div class = "col-sm-3">
+                        <p class = "whatweather">What will the weather be in 3 hours?</p>
+                        <p id = "weathertext-1">Cloudy!</p>
+                        <img src="assets/images/cloud.png" alt="bike" id="weatherimg-1">
+                </div>
+                <div class = "col-sm-3">
+                        <p class = "whatweather">What will the weather be in 6 hours?</p>
+                        <p id = "weathertext-2">Rainy!</p>
+                        <img src="assets/images/rain.png" alt="bike" id="weatherimg-2">
+                </div>
+                <div class = "col-sm-3">
+                        <p class = "whatweather">What will the weather be in 9 hours?</p>
+                        <p id = "weathertext-3">Dark!</p>
+                        <img src="assets/images/moon.png" alt="bike" id="weatherimg-3">
+                </div>
+            </div>
+        </div>
+        
+        <div class = "container enterroute">
+                <div class = "row">
+                    <div class = "col-sm-2">
+                        <p class = "whatweather">Starting Point:</p>
+                    </div>
+                    <div class = "col-sm-3">
+                        <input type = "text" class = "rinput startinput">
+                    </div>
+                    <div class = "col-sm-2">
+                        <p class = "whatweather">Ending Point:</p>
+                    </div>
+                    <div class = "col-sm-3">
+                        <input type = "text" class = "rinput endinput">
+                    </div>
+                    <div class = "col-sm-2">
+                        <button class = "rtbtn">Get Route!</button>
+                    </div>
+                </div>
+        </div>
+    
+        <div class = "container localsearch">
+            <div class = "row">
+                <div class = "col-sm-12">
+                    <select class = "drop">
+                        <option value="0">Suggested Locations:</option>
+                        <option value="1">Restaurant</option>
+                        <option value="2">Drug Store</option>
+                        <option value="3">Park</option>
+                        <option value="4">Museum</option>
+                    </select>
+                </div>
+            </div>
+            <div class = "row">
+                <div class = "col-sm-12">
+                    <button class = "gobtn opbtn">Look</button>
+                    <button class = "clearbtn opbtn">Clear</button>
+                </div>
+            </div>
+        </div>
+
+        <div class = "container localoptionbox">
+            <div class = "row localoptions">
+                
+            </div>
+        </div>
+
+        <div class = "container mapcont">
+                <div class = "row">
+                    <div class = "col-sm-6">
+                        <img src="assets/images/exmap.jpg" alt="map" class="map">
+                    </div>
+                    <div class = "col-sm-6 directioncol">
+                            <div class = "row direction">
+                                <div class = "col-sm-12">
+                                    <p>First Step</p>
+                                </div>
+                            </div>
+                            <div class = "row direction">
+                                    <div class = "col-sm-12">
+                                        <p>Next Step</p>
+                                    </div>
+                            </div>
+                            <div class = "row direction">
+                                    <div class = "col-sm-12">
+                                        <p>Next Step</p>
+                                    </div>
+                            </div>
+                            <div class = "row direction">
+                                    <div class = "col-sm-12">
+                                        <p>Next Step</p>
+                                    </div>
+                            </div>
+                            <div class = "row direction">
+                                    <div class = "col-sm-12">
+                                        <p>Next Step</p>
+                                    </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+</body>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="assets/logic.js"></script>
+<script type="text/javascript" src="assets/logic.js"></script>
+</html>
