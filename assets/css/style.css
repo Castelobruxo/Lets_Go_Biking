@@ -155,3 +155,9 @@ button:focus{
 .hide {
     display: none;
 }
+
+.bold-instruction {
+    font-weight: bold;
+    font-size: 1.4em;
+    margin: 5px;
+}

@@ -17,6 +17,7 @@
      * @param geocorder      Gets an instance of the geocoding service
      * @param router         Gets an instance of the routing service\
      * @param  {H.Map} map   A HERE Map instance within the application
+     * @param mapObjects     Holds all objects added to the map (markers, route line, etc)
      * @param startClicked   Determines if the next input should go into the start location input box (set true by default)
      * @param endClicked     Determines if the next input should go into the end location input box
      * @param location_data  Holds places and geo coordinates that the user inputs (initialized to nothing)
@@ -25,6 +26,7 @@
     var geocoder = platform.getGeocodingService();
     var router = platform.getRoutingService();
     var map;
+    var mapObjects = [];
     var startClicked = true;
     var endClicked = false;
     locationData = {
@@ -128,7 +130,12 @@
 
     // Define a callback function to process the routing response:
     var setRoute = function (result) {
-        console.log(result);
+        // clear the markers and route line from the previous calculation, if any
+        map.removeObjects(mapObjects);
+        
+        // empty the objects array 
+        mapObjects = [];
+
         var route,
             routeShape,
             startPoint,
@@ -175,6 +182,9 @@
                 lng: endPoint.longitude
             });
 
+            // add all the objects to an array so they can be removed from the map later
+            mapObjects = mapObjects.concat(routeLine, startMarker, endMarker);
+
             // Add the route polyline and the two markers to the map:
             map.addObjects([routeLine, startMarker, endMarker]);
 
@@ -200,15 +210,20 @@
                     .addClass('direction-p')
                     .attr('id', 'direction-p-' + i)
 
+                if (!i)
+                    p.addClass('bold-instruction'); // make the text bold and bigger since it will appear in the top bar
+
                 var input = $('<input type="checkbox">')
                     .attr('id', 'direction-checkbox-' + i)
                 if (i)
                     input.addClass('hide');
 
+                
                 var span = $('<span>')
                     .html(
                         res[i].instruction
                     )
+                    
 
                 // p.append(input).append(span).append(hr);
                 p.append(span).append(hr);
@@ -283,7 +298,7 @@
                 .addClass('poi-card')
                 .html(
                     'Name: ' + nearby[i].title +
-                    '<br />Coords: ' + nearby[i].position[0] + ',' + nearby[i].position[1] +
+                    // '<br />Coords: ' + nearby[i].position[0] + ',' + nearby[i].position[1] +
                     '<br />Distance: ' + '' + nearby[i].distance +
                     '<br />Address: ' + nearby[i].vicinity
                 )
@@ -300,6 +315,7 @@
             // append the new colum on the row
             row.append(div);
 
+            // append the last row whether it is full or not
             if (i == (nearby.length - 1))
                 $('.localoptions').append(row);
 
@@ -371,7 +387,7 @@
 
         var next = $('#direction-p-' + (parseInt(currentId) + 1));
 
-        next.attr('style', 'font-weight:bold;font-size:1.4em;margin:5px;');
+        next.addClass('bold-instruction');
 
         $('#next-instruction').empty().append(next);
     })
