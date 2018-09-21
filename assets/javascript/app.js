@@ -42,7 +42,13 @@ $(".gobtn").on("click", function () {
     // else
     //     $('#local-options').removeClass('hide');
 
-    $('#local-options').toggle('hide');
+    if ($('#local-options').hasClass('hide')) {
+        $('#local-options').removeClass('hide');
+    } 
+    else {
+        $('#local-options').addClass('hide');
+    }
+    // $('#local-options').toggle('hide');
 
 });
 

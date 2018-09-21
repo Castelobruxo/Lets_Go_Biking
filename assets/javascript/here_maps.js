@@ -101,7 +101,15 @@
 
     // Define a callback function to process the geocoding response:
     var setStartGeoPoints = function (result) {
+
+        $('#start-location').removeClass('input-error');
+
         console.log(result);
+        if (!result.Response.View.length) {
+            $('#start-location').addClass('input-error');
+            return;
+        }
+
         var locations = result.Response.View[0].Result,
             marker;
 
@@ -117,11 +125,19 @@
         locationData.start_long = locations[0].Location.DisplayPosition.Longitude;
         locationData.start_addr = document.getElementById('start-location').value;
 
-        console.log('lat: ' + locationData.start_lat + '\nLong: ' + locationData.start_lat + '\n' + locationData.start_addr);
+        // console.log('lat: ' + locationData.start_lat + '\nLong: ' + locationData.start_lat + '\n' + locationData.start_addr);
     };
     // Define a callback function to process the geocoding response:
     var setEndGeoPoints = function (result) {
+
+        $('#end-location').removeClass('input-error');
+
         console.log(result);
+        if (!result.Response.length) {
+            $('#end-location').addClass('input-error');
+            return;
+        }
+
         var locations = result.Response.View[0].Result,
             marker;
 
@@ -140,10 +156,16 @@
 
     // Define a callback function to process the routing response:
     var setRoute = function (result) {
+        // make sure the input box wasn't empty when the 'Set Start' button was clicked
+
+        if (!result.response) 
+            return;
+
+        console.log(result.response.length)
+
+
         // clear the markers and route line from the previous calculation, if any
         map.removeObjects(mapObjects);
-
-        console.log(result);
 
         // empty the objects array 
         mapObjects = [];
@@ -297,6 +319,9 @@
                 $('.localoptions').append(row);
 
         }
+        console.log($('#local-options').hasClass('hide'));
+        if ($('#local-options').hasClass('hide'))
+            $('#local-options').removeClass('hide');
     }
 
     // Define a callback to handle errors:
@@ -399,6 +424,7 @@
         $('#start-location').removeClass('input-error');
         if (!locationData.start_lat || !locationData.start_long) {
             $('#start-location').addClass('input-error');
+            $(this).val(0);
             return;
         }
         var cat = $('#nearby-select').val();
@@ -408,6 +434,7 @@
 
         // console.log(cat);
         findNearby(cat);
+
     });
 
     // document.getElementById('start-btn').addEventListener('click', function () {

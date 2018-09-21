@@ -179,6 +179,12 @@ button:focus{
     margin: 15px auto;
 }
 
+#instructions-expand {
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
+}
+
 
 
 
