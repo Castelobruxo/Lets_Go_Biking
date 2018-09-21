@@ -143,6 +143,8 @@
         // clear the markers and route line from the previous calculation, if any
         map.removeObjects(mapObjects);
 
+        console.log(result);
+
         // empty the objects array 
         mapObjects = [];
 
@@ -371,10 +373,12 @@
         locationData.end_lat = lat;
         locationData.end_long = long;
         locationData.end_addr = address;
-        $('#end-point').val(lat + ',' + long);
-        $('#end-point-p').text(name);
-        // console.log(data);
+        // $('#end-point').val(lat + ',' + long);
+        // $('#end-point-p').text(name);
 
+        $('#end-location').val(name + ': ' + address);
+        // console.log(data);
+        $('#local-options').toggle('hide');
     })
 
     $('#get-next-instruction').on('click', function () {

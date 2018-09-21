@@ -12,7 +12,7 @@
 body {
     padding: 50px;
     /* background-color: rgb(36, 36, 36); */
-    background-image: linear-gradient(to right, rgb(100,100,100), black, rgb(100,100,100));
+    /* background-image: linear-gradient(to right, rgb(100,100,100), black, rgb(100,100,100)); */
 }
 
 .headimg {
