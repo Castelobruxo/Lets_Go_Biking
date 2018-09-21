@@ -100,7 +100,7 @@
     }
 
     // Define a callback function to process the geocoding response:
-    var setGeoPoints = function (result) {
+    var setStartGeoPoints = function (result) {
         console.log(result);
         var locations = result.Response.View[0].Result,
             marker;
@@ -111,28 +111,38 @@
             lng: locations[0].Location.DisplayPosition.Longitude
         });
         map.addObject(marker);
+        mapObjects = mapObjects.concat(marker);
 
-        if (startClicked) {
-            locationData.start_lat = locations[0].Location.DisplayPosition.Latitude;
-            locationData.start_long = locations[0].Location.DisplayPosition.Longitude;
-            locationData.start_addr = document.getElementById('search-location').value;
-            document.getElementById('start-point').value = locationData.start_lat + ', ' + locationData.start_long;
-            document.getElementById('start-point-p').innerText = locationData.start_addr;
-        } else {
-            locationData.end_lat = locations[0].Location.DisplayPosition.Latitude;
-            locationData.end_long = locations[0].Location.DisplayPosition.Longitude;
-            locationData.end_addr = document.getElementById('search-location').value;
-            document.getElementById('end-point').value = locationData.end_lat + ', ' + locationData.end_long;
-            document.getElementById('end-point-p').innerText = locationData.end_addr;
-        }
+        locationData.start_lat = locations[0].Location.DisplayPosition.Latitude;
+        locationData.start_long = locations[0].Location.DisplayPosition.Longitude;
+        locationData.start_addr = document.getElementById('start-location').value;
 
+        console.log('lat: ' + locationData.start_lat + '\nLong: ' + locationData.start_lat + '\n' + locationData.start_addr);
+    };
+    // Define a callback function to process the geocoding response:
+    var setEndGeoPoints = function (result) {
+        console.log(result);
+        var locations = result.Response.View[0].Result,
+            marker;
+
+        // set a marker on the map for the entered location
+        marker = new H.map.Marker({
+            lat: locations[0].Location.DisplayPosition.Latitude,
+            lng: locations[0].Location.DisplayPosition.Longitude
+        });
+        map.addObject(marker);
+        mapObjects = mapObjects.concat(marker);
+
+        locationData.end_lat = locations[0].Location.DisplayPosition.Latitude;
+        locationData.end_long = locations[0].Location.DisplayPosition.Longitude;
+        locationData.end_addr = document.getElementById('end-location').value;
     };
 
     // Define a callback function to process the routing response:
     var setRoute = function (result) {
         // clear the markers and route line from the previous calculation, if any
         map.removeObjects(mapObjects);
-        
+
         // empty the objects array 
         mapObjects = [];
 
@@ -191,15 +201,6 @@
             // Set the map's viewport to make the whole route visible:
             map.setViewBounds(routeLine.getBounds());
 
-            // document.getElementById('directions').innerHTML = '';
-            // for (var i = 0; i < res.length; i++) {
-            //     document.getElementById('directions').innerHTML += 
-            //             '<span id="directions-span-' + i + '">' + 
-            //             '<br />' + 
-            //             '<input id="checkbox-' + i + '" type="checkbox" class="directions-checkbox">' + (i + 1) +
-            //         '. ' + res[i].instruction + '</span>';
-            // }
-
             // $('.direction-col').empty();
             $('#all-instructions').empty();
             for (var i = 0; i < res.length; i++) {
@@ -218,12 +219,12 @@
                 if (i)
                     input.addClass('hide');
 
-                
+
                 var span = $('<span>')
                     .html(
                         res[i].instruction
                     )
-                    
+
 
                 // p.append(input).append(span).append(hr);
                 p.append(span).append(hr);
@@ -236,32 +237,6 @@
                 }
             }
 
-            // var checkboxes = document.querySelectorAll('#directions.directions-checkbox');
-            // Array.from(checkboxes).forEach(function (box) {
-            //     box.addEventListener('click', function () {
-            //         console.log(this);
-            //         // var id = element.id.split('-')[1];
-            //         this.parentNode.removeChild(element);
-            //     })
-            // })
-            // var checkboxes = document.querySelectorAll('input[id^=direction-checkbox-]');
-            // Array.from(checkboxes).forEach(function (box) {
-            //     box.addEventListener('change', function () {
-            //         // console.log(this.id.split('-')[2]);
-            //         var id = this.id.split('-')[2];
-            //         var current = document.getElementById('direction-p-' + id);
-            //         current.parentNode.removeChild(current);
-
-            //         // get next instruction and put it in the 'next' box 
-            //         var next = $('#direction-p-' + (parseInt(id) + 1));
-            //         // console.log('#direction-checkbox-' + (parseInt(id) + 1));
-            //         // $('#direction-checkbox-' + (parseInt(id) + 1))
-            //         //     .removeClass('hide');
-
-            //         $('#next-instruction').empty().append(next);
-            //     })
-            // })
-            // console.log(checkboxes);
         }
     };
 
@@ -304,7 +279,7 @@
                 )
 
             var div = $('<div>')
-                .addClass('col-md-3 col-sm-2 col-xs-12 nearby-poi')
+                .addClass('col-md-3 col-sm-6 col-xs-12 nearby-poi')
                 // .attr('style', 'margin: 2px 0px')
                 .html(text)
                 .attr('data-lat', nearby[i].position[0])
@@ -363,7 +338,31 @@
 
     */
 
-    $('body').on('click', '.nearby-poi', function() {
+    $('#start-location-submit').on('click', function () {
+        var location = document.getElementById('start-location').value;
+        var geocodingParams = {
+            searchText: location
+        }
+
+        // call setGeoPoints to set the map to the start point and set the properties in 'locationData'
+        geocoder.geocode(geocodingParams, setStartGeoPoints, function (e) {
+            alert(e);
+        });
+    })
+
+    $('#end-location-submit').on('click', function () {
+        var location = document.getElementById('end-location').value;
+        var geocodingParams = {
+            searchText: location
+        }
+
+        // call setGeoPoints to set the map to the start point and set the properties in 'locationData'
+        geocoder.geocode(geocodingParams, setEndGeoPoints, function (e) {
+            alert(e);
+        });
+    })
+
+    $('body').on('click', '.nearby-poi', function () {
         var lat = $(this).attr('data-lat');
         var long = $(this).attr('data-long');
         var address = $(this).attr('data-address');
@@ -393,6 +392,11 @@
     })
 
     $('#nearby-select').on('change', function () {
+        $('#start-location').removeClass('input-error');
+        if (!locationData.start_lat || !locationData.start_long) {
+            $('#start-location').addClass('input-error');
+            return;
+        }
         var cat = $('#nearby-select').val();
 
         // clear the results from the last chane
@@ -402,39 +406,30 @@
         findNearby(cat);
     });
 
-    document.getElementById('start-btn').addEventListener('click', function () {
+    // document.getElementById('start-btn').addEventListener('click', function () {
 
-        document.getElementById('start-btn').classList.add('btn-pressed');
-        document.getElementById('end-btn').classList.remove('btn-pressed');
-        startClicked = true;
-        endClicked = false;
-    })
+    //     document.getElementById('start-btn').classList.add('btn-pressed');
+    //     document.getElementById('end-btn').classList.remove('btn-pressed');
+    //     startClicked = true;
+    //     endClicked = false;
+    // })
 
-    document.getElementById('end-btn').addEventListener('click', function () {
+    // document.getElementById('end-btn').addEventListener('click', function () {
 
-        document.getElementById('start-btn').classList.remove('btn-pressed');
-        document.getElementById('end-btn').classList.add('btn-pressed');
-        startClicked = false;
-        endClicked = true;
+    //     document.getElementById('start-btn').classList.remove('btn-pressed');
+    //     document.getElementById('end-btn').classList.add('btn-pressed');
+    //     startClicked = false;
+    //     endClicked = true;
 
-    })
+    // })
 
-    document.getElementById('search-location-submit').addEventListener('click', function () {
-        var location = document.getElementById('search-location').value;
-        var geocodingParams = {
-            searchText: location
-        }
+    // document.getElementById('search-location-submit').addEventListener('click', function () {
 
-        // Call the geocode method with the geocoding parameters,
-        // the callback and an error callback function (called if a
-        // communication error occurs):
-        geocoder.geocode(geocodingParams, setGeoPoints, function (e) {
-            alert(e);
-        });
-    })
+    // })
 
 
-    document.getElementById('find-route').addEventListener('click', function () {
+    document.getElementById('calculate-route').addEventListener('click', function () {
+    // document.getElementById('find-route').addEventListener('click', function () {
         // get starting and ending point
         // var start = document.getElementById('start-point').value.split(',');
         // var end = document.getElementById('end-point').value.split(',');
