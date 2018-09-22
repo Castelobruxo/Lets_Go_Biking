@@ -391,6 +391,9 @@
 
         $('#start-location').val(locationData.start_lat + ',' + locationData.start_long)
 
+        $('.loc-error').addClass('hide');
+        $('#start-location').removeClass('input-error').addClass('input-ok');
+
     })
 
     $('#start-location-submit').on('click', function () {
