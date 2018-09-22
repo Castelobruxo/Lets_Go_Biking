@@ -141,7 +141,7 @@
         $('.loc-error').addClass('hide');
 
         // console.log(result.Response.View.length);
-        if (!result.Response.length) {
+        if (!result.Response.View.length) {
             endInput.addClass('input-error');
             $('.loc-error').removeClass('hide');
             return;
