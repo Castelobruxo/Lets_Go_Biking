@@ -389,6 +389,8 @@
         locationData.start_lat = locationData.current_lat;
         locationData.start_long= locationData.current_long;
 
+        $('#start-location').val(locationData.start_lat + ',' + locationData.start_long)
+
     })
 
     $('#start-location-submit').on('click', function () {
