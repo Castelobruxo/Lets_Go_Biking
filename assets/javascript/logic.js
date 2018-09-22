@@ -16,7 +16,7 @@ $(document).ready(function() {
         var lat = position.coords.latitude;
         var long = position.coords.longitude;
        
-        var queryURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + long + "&units=imperial&APPID=cb5acdd0786623637d642f126e5ae380"
+        var queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + long + "&units=imperial&APPID=cb5acdd0786623637d642f126e5ae380"
 
         $.ajax({
             url: queryURL,
@@ -36,7 +36,7 @@ $(document).ready(function() {
                     var time = moment.unix(response.list[i].dt)
                     $(".t" + i).text(time.format("hh:mm A"))
 
-                    $("#weatherimg-" + i).attr("src", "http://openweathermap.org/img/w/" + response.list[i].weather[0].icon + ".png")
+                    $("#weatherimg-" + i).attr("src", "https://openweathermap.org/img/w/" + response.list[i].weather[0].icon + ".png")
 
                 }
                 
