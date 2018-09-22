@@ -50,7 +50,12 @@
           <p class="t4 timetext">12:00</p>
           <img src="assets/images/sun.png" alt="bike" class="weatherimg">
         </div>
+        <div class="col-md-2 col-xs-0"></div>
       </div>
+
+      <!-- <div class="row"> -->
+      <!-- <div class="col-12"> -->
+      <!-- <div id='local-options' class="localoptionbox "> -->
     </div>
     <div class="enterroute">
         <div class="row ">
@@ -58,12 +63,13 @@
             <p class="whatweather">Enter starting point:</p>
             <form class='form-inline' style='text-align:center;'>
               <div class="form-group">
-                <input type="text" id='start-location' class="rinput startinput form-control">
+                <input type="text" id='start-location' class="rinput startinput form-control" value='5994 sunscape drive ne louisville'>
               </div>
               <div class="form-group">
                 <input type="button" id='start-location-submit' class="btn btn-success " value="Set Start">
               </div>
             </form>
+            <!-- <p class='loc-error '>That address was not valid... Please enter a street address and city or a street number, city, and state.</p> -->
           </div>
           <div class="col-md-6 col-xs-12 text-center" >
             <p class="whatweather">Enter destination or find a POI:</p>
@@ -75,8 +81,8 @@
                 <input type="button" id='end-location-submit' class="btn btn-success " value="Set End">
               </div>
             </form>
-            </form>
           </div>
+          <p class='loc-error hide'>That address was not valid... Please enter a street address and city or a street number, city, and state.</p>
         </div>
 
       <hr>
@@ -181,22 +187,15 @@
       </div>
     </div>
 
-    10900 Euclid Ave, Cleveland, OH 44106 <br />
-    5994 sunscape drive louisville
-    <div>Where to go: <input type='text' id='search-location' value='5994 sunscape drive louisville'><button id='search-location-submit'>Search</button></div>
-    <button id='start-btn' class='btn-pressed'>Start</button><br />
-    <input id='start-point' type='text' disabled placeholder='<- click the button and select a starting point on the map'>
-    <p id='start-point-p'></p>
-    <br />
-    <button id='end-btn'>End</button><br />
-    <input id='end-point' type='text' disabled placeholder='<- click the button and select an ending point on the map'>
-    <p id="end-point-p"></p>
-    <br />
-    <button id='find-route'>Calculate Route</button>
-    <!-- <div id="map" style="width: 100%; height: 400px; background: grey"></div> -->
+  </div>
+  
+  <div class="quotediv">
+    <p class="quote"></p>
+    <p class="author"></p>
+  </div>
 
-
-    <div id='directions'></div>
+  <div class="footer">
+    <p class="foottxt">Castelobruxo &copy</p>
   </div>
 
 
@@ -205,6 +204,7 @@
     crossorigin="anonymous"></script>
   <script type="text/javascript" charset="UTF-8" src='assets/javascript/here_maps.js'></script>
   <script src="assets/javascript/app.js"></script>
+  <script src="assets/javascript/quote.js"></script>
 </body>
 
 </html>

@@ -101,7 +101,20 @@
 
     // Define a callback function to process the geocoding response:
     var setStartGeoPoints = function (result) {
-        console.log(result);
+
+        var startInput = $('#start-location');
+        startInput.removeClass('input-error');
+        startInput.removeClass('input-ok');
+        $('.loc-error').addClass('hide');
+
+        // console.log(result);
+        if (!result.Response.View.length) {
+            startInput.addClass('input-error');
+            $('.loc-error').removeClass('hide');
+            return;
+        }
+        startInput.addClass('input-ok');
+        
         var locations = result.Response.View[0].Result,
             marker;
 
@@ -117,11 +130,26 @@
         locationData.start_long = locations[0].Location.DisplayPosition.Longitude;
         locationData.start_addr = document.getElementById('start-location').value;
 
-        console.log('lat: ' + locationData.start_lat + '\nLong: ' + locationData.start_lat + '\n' + locationData.start_addr);
+        // console.log('lat: ' + locationData.start_lat + '\nLong: ' + locationData.start_lat + '\n' + locationData.start_addr);
     };
     // Define a callback function to process the geocoding response:
     var setEndGeoPoints = function (result) {
-        console.log(result);
+
+        var endInput = $('#end-location');
+        endInput.removeClass('input-error');
+        endInput.removeClass('input-ok');
+        $('.loc-error').addClass('hide');
+
+        // console.log(result.Response.View.length);
+        if (!result.Response.length) {
+            endInput.addClass('input-error');
+            $('.loc-error').removeClass('hide');
+            return;
+        }
+        
+        endInput.addClass('input-ok');
+
+
         var locations = result.Response.View[0].Result,
             marker;
 
@@ -133,19 +161,24 @@
         map.addObject(marker);
         mapObjects = mapObjects.concat(marker);
 
+        // console.log('lat: ' + locationData.start_lat + '\nLong: ' + locationData.start_lat + '\n' + locationData.start_addr);
         locationData.end_lat = locations[0].Location.DisplayPosition.Latitude;
         locationData.end_long = locations[0].Location.DisplayPosition.Longitude;
         locationData.end_addr = document.getElementById('end-location').value;
     };
+    
 
     // Define a callback function to process the routing response:
     var setRoute = function (result) {
+        // make sure the input box wasn't empty when the 'Set Start' button was clicked
+
+        if (!result.response) 
+            return;
+
         // clear the markers and route line from the previous calculation, if any
         map.removeObjects(mapObjects);
 
-        console.log(result);
 
-        // empty the objects array 
         mapObjects = [];
 
         var route,
@@ -297,6 +330,9 @@
                 $('.localoptions').append(row);
 
         }
+
+        if ($('#local-options').hasClass('hide'))
+            $('#local-options').removeClass('hide');
     }
 
     // Define a callback to handle errors:
@@ -362,7 +398,7 @@
         });
     })
 
-    $('body').on('click', '.nearby-poi', function () {
+    $('body').on('click touchstart', '.nearby-poi', function () {
         var lat = $(this).attr('data-lat');
         var long = $(this).attr('data-long');
         var address = $(this).attr('data-address');
@@ -376,7 +412,8 @@
 
         $('#end-location').val(name + ': ' + address);
         // console.log(data);
-        $('#local-options').toggle('hide');
+        $('#local-options').addClass('hide');
+
     })
 
     $('#get-next-instruction').on('click', function () {
@@ -397,6 +434,7 @@
         $('#start-location').removeClass('input-error');
         if (!locationData.start_lat || !locationData.start_long) {
             $('#start-location').addClass('input-error');
+            $(this).val(0);
             return;
         }
         var cat = $('#nearby-select').val();
@@ -406,6 +444,7 @@
 
         // console.log(cat);
         findNearby(cat);
+
     });
 
     // document.getElementById('start-btn').addEventListener('click', function () {
