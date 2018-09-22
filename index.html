@@ -18,6 +18,8 @@
   <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
   <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
   <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-places.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
 
   <title>Let's Go Biking!</title>
 </head>
@@ -35,20 +37,20 @@
       </div>
       <div class="col-xs-12 col-sm-8 col-md-6">
         <div class="weatherconts">
-          <p class="t1 timetext">9:00</p>
-          <img src="assets/images/moon.png" alt="bike" class="weatherimg">
+          <p class="t3 timetext">9:00</p>
+          <img src="" alt="--" id="weatherimg-3">
         </div>
         <div class="weatherconts">
           <p class="t2 timetext">6:00</p>
-          <img src="assets/images/cloud.png" alt="bike" class="weatherimg">
+          <img src="" alt="--" id="weatherimg-2">
         </div>
         <div class="weatherconts">
-          <p class="t3 timetext">3:00</p>
-          <img src="assets/images/rain.png" alt="bike" class="weatherimg">
+          <p class="t1 timetext">3:00</p>
+          <img src="" alt="-" id="weatherimg-1">
         </div>
         <div class="weatherconts">
-          <p class="t4 timetext">12:00</p>
-          <img src="assets/images/sun.png" alt="bike" class="weatherimg">
+          <p class="t0 timetext">12:00</p>
+          <img src="" alt="--" id="weatherimg-0">
         </div>
         <div class="col-md-2 col-xs-0"></div>
       </div>
@@ -194,6 +196,7 @@
     crossorigin="anonymous"></script>
   <script type="text/javascript" charset="UTF-8" src='assets/javascript/here_maps.js'></script>
   <script src="assets/javascript/app.js"></script>
+  <script src="assets/javascript/logic.js"></script>
 </body>
 
 </html>

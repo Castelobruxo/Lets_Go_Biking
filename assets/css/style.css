@@ -31,7 +31,10 @@ body {
     display: none;
 }
 
-.weatherimg {
+#weatherimg-0,
+#weatherimg-1,
+#weatherimg-2,
+#weatherimg-3 {
     width: 40px;
     height: 40px;
     display: block;
