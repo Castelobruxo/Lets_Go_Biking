@@ -88,6 +88,9 @@
                 pixelRatio: pixelRatio
             });
 
+            locationData.start_lat = position.coords.latitude;
+            locationData.start_long= position.coords.longitude;
+            locationData.start_addr = '';
 
         //Step 3: make the map interactive
         // MapEvents enables the event system
@@ -354,7 +357,8 @@
         // Define search parameters:
         var params = {
                 // Look for places matching the category "eat and drink":
-                'cat': cat
+                'cat': cat,
+                metricSystem: 'imperial'
             },
             // Define a headers object required by the request() method:
             headers = {
@@ -487,7 +491,8 @@
             'waypoint1': 'geo!' + locationData.end_lat + ',' + locationData.end_long,
             // To retrieve the shape of the route we choose the route
             // representation mode 'display'
-            'representation': 'display'
+            'representation': 'display',
+            'metricSystem': 'imperial'
         };
 
         // Call calculateRoute() with the routing parameters,

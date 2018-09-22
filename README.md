@@ -18,9 +18,9 @@ A web app to create a bike route and check the weather
 * For the repeating elements, we created a div that will hold the nearby points of interest so that the user can select a POI instead of typing in a specific address.  Every time the POI category changes, the nearby POIs are cleared and then dynamically created again with the new information.
 
 
-# Presentaion:
+# Presentation:
 1. Application Concept
-    * The user should be able to find a bike route, find, points of interest, get directions, and check to make sure the weather is suitable for a ride.
+    * The user should be able to find a bike route, find points of interest, get directions, and check to make sure the weather is suitable for a ride.
 
 2. Motivation
     * Riding on the same path every day gets very boring.  Therefore, we created an app that allows a user to easily find different bike routes around the city and also check the weather because no one wants to ride their bike in unsuitable conditions
