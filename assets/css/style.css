@@ -28,12 +28,17 @@ body {
     background-color: #98FB98;
     border-radius: 10px;
     margin: 5px;
+}
+
+.headimg1{
     animation-name: move;
     animation-duration: 3s;
 }
 
 .headimg2 {
     display: none;
+    animation-name: move;
+    animation-duration: 3s;
 }
 
 .weatherimg {
@@ -84,7 +89,7 @@ body {
     border-bottom: none;
     height: 350px;
     /* background: rgb(220, 220, 220); */
-    background-image: linear-gradient(to bottom, rgb(255,255,255), rgb(120,120,120) ,rgb(36, 36, 36));
+    background-image: linear-gradient(to bottom, rgb(255,255,255), rgb(255,255,255), #C0C0C0,rgb(120,120,120) , rgb(36, 36, 36));
     overflow-y: scroll;
 }
 .direction-col::-webkit-scrollbar {
@@ -228,7 +233,9 @@ button:focus{
     to {margin-left: 5px;}
 
     from {background-color: transparent;}
-    to {background-color: #98FB98;}
+    to {background-color: transparent;}
+    from {border: 0px solid white;}
+    to {border: 0px solid white;}
 }
 
 /* 
