@@ -398,7 +398,7 @@
         });
     })
 
-    $('body').on('click touchstart', '.nearby-poi', function () {
+    $('body').on('click touchend', '.nearby-poi', function () {
         var lat = $(this).attr('data-lat');
         var long = $(this).attr('data-long');
         var address = $(this).attr('data-address');
