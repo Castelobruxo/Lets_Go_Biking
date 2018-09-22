@@ -18,6 +18,7 @@
   <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
   <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
   <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-places.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 
   <title>Let's Go Biking!</title>
 </head>
@@ -35,20 +36,26 @@
       </div>
       <div class="col-xs-12 col-sm-8 col-md-6">
         <div class="weatherconts">
-          <p class="t1 timetext">9:00</p>
-          <img src="assets/images/moon.png" alt="bike" class="weatherimg">
+
+          <p class="t3 timetext">9:00</p>
+          <img src="assets/images/moon.png" alt="bike" id="weatherimg-3">
+          <div id="temp3"></div>
         </div>
         <div class="weatherconts">
           <p class="t2 timetext">6:00</p>
-          <img src="assets/images/cloud.png" alt="bike" class="weatherimg">
+          <img src="assets/images/cloud.png" alt="bike" id="weatherimg-2">
+          <div id="temp2"></div>
         </div>
         <div class="weatherconts">
-          <p class="t3 timetext">3:00</p>
-          <img src="assets/images/rain.png" alt="bike" class="weatherimg">
+          <p class="t1 timetext">3:00</p>
+          <img src="assets/images/rain.png" alt="bike" id="weatherimg-1">
+          <div id="temp1"></div>
         </div>
         <div class="weatherconts">
-          <p class="t4 timetext">12:00</p>
-          <img src="assets/images/sun.png" alt="bike" class="weatherimg">
+          <p class="t0 timetext">12:00</p>
+          <img src="assets/images/sun.png" alt="bike" id="weatherimg-0">
+          <div id="temp0"></div>
+
         </div>
         <div class="col-md-2 col-xs-0"></div>
       </div>
@@ -69,7 +76,6 @@
                 <input type="button" id='start-location-submit' class="btn btn-success " value="Set Start">
               </div>
             </form>
-            <!-- <p class='loc-error '>That address was not valid... Please enter a street address and city or a street number, city, and state.</p> -->
           </div>
           <div class="col-md-6 col-xs-12 text-center" >
             <p class="whatweather">Enter destination or find a POI:</p>
@@ -81,6 +87,7 @@
                 <input type="button" id='end-location-submit' class="btn btn-success " value="Set End">
               </div>
             </form>
+
           </div>
           <p class='loc-error hide'>That address was not valid... Please enter a street address and city or a street number, city, and state.</p>
         </div>
@@ -188,6 +195,7 @@
     </div>
 
   </div>
+
   
   <div class="quotediv">
     <p class="quote"></p>
@@ -199,11 +207,13 @@
   </div>
 
 
+
   <!-- scripts -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
   <script type="text/javascript" charset="UTF-8" src='assets/javascript/here_maps.js'></script>
   <script src="assets/javascript/app.js"></script>
+  <script src="assets/javascript/logic.js"></script>
   <script src="assets/javascript/quote.js"></script>
 </body>
 
