@@ -1,5 +1,5 @@
-    //Step 1: initialize communication with the platform
-    var platform = new H.service.Platform({
+      //Step 1: initialize communication with the platform
+      var platform = new H.service.Platform({
         app_id: 'U0H0TkgUTq8csF1SBncQ',
         app_code: 'VAN4F5Ubnva4sqCz0aABVA',
         useHTTPS: true
@@ -149,10 +149,12 @@
         map.addObject(marker);
         mapObjects = mapObjects.concat(marker);
 
+        // console.log('lat: ' + locationData.start_lat + '\nLong: ' + locationData.start_lat + '\n' + locationData.start_addr);
         locationData.end_lat = locations[0].Location.DisplayPosition.Latitude;
         locationData.end_long = locations[0].Location.DisplayPosition.Longitude;
         locationData.end_addr = document.getElementById('end-location').value;
     };
+    
 
     // Define a callback function to process the routing response:
     var setRoute = function (result) {
@@ -167,7 +169,7 @@
         // clear the markers and route line from the previous calculation, if any
         map.removeObjects(mapObjects);
 
-        // empty the objects array 
+
         mapObjects = [];
 
         var route,
@@ -360,9 +362,7 @@
 
 
     /*
-
         EVENT HANDLERS
-
     */
 
     $('#start-location-submit').on('click', function () {
@@ -502,9 +502,7 @@
 
 
     /*
-
         STARTUP methods
-
     */
 
     getLocation();
