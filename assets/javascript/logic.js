@@ -29,12 +29,14 @@ $(document).ready(function() {
             // console.log(time.format("HH:mm:ss"))
     
             // Logic for pushing cloud data and images to weather section
-            console.log(moment.unix(response.list[0].dt))
                 for (var i = 0; i < 4; i++) {
                     
-                    timeParse();
-                   
+                    // uses Moment.js to change time code into military time
+                    var time = moment.unix(response.list[i].dt)
+                    $(".t" + i).text(time.format("hh:mm A"))
 
+                    
+                        // checks weather code from open weathermap API and prints relevent icon to screen
                     if (response.list[i].weather[0].id > 800) {
                         $("#weatherimg-" + i).attr("src", "http://openweathermap.org/img/w/03d.png")
                         
@@ -57,10 +59,6 @@ $(document).ready(function() {
                         }
                 }
                 
-                timeParse = function(){
-                    var time = moment.unix(response.list[i].dt)
-                    $(".t" + i).text(time.format("HH:mm"))
-                } 
             });
 
     }
