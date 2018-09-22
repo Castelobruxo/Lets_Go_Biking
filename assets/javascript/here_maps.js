@@ -35,7 +35,9 @@
         start_addr: '',
         end_lat: '',
         end_long: '',
-        end_addr: ''
+        end_addr: '',
+        current_lat: '',
+        current_long: ''
     }
     var explore = new H.places.Explore(platform.getPlacesService()),
         geoUserLocationResult, error;
@@ -88,9 +90,8 @@
                 pixelRatio: pixelRatio
             });
 
-            locationData.start_lat = position.coords.latitude;
-            locationData.start_long= position.coords.longitude;
-            locationData.start_addr = '';
+            locationData.current_lat = position.coords.latitude;
+            locationData.current_long = position.coords.longitude;
 
         //Step 3: make the map interactive
         // MapEvents enables the event system
@@ -379,6 +380,16 @@
     /*
         EVENT HANDLERS
     */
+
+    $('#start-current-loc').on('click', function(evt) {
+        // prevent the form from submitting
+        evt.preventDefault();
+
+        // change the start location lat and long to the current lat and long
+        locationData.start_lat = locationData.current_lat;
+        locationData.start_long= locationData.current_long;
+
+    })
 
     $('#start-location-submit').on('click', function () {
         var location = document.getElementById('start-location').value;

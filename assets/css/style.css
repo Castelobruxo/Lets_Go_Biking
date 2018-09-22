@@ -168,6 +168,11 @@ button:focus{
     /* background-color: #90EE90; */
 }
 
+#start-current-loc > img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
 .localoptionbox {
     margin-top: 10px;
     /* display: none; */
