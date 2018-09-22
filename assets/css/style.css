@@ -12,8 +12,8 @@
 body {
    background-image: url("../images/bikeback.jpg");
    background-repeat: no-repeat;
-   background-size: 100% 490px;
-   background-color: #87CEFA;
+   background-size: 100% 560px;
+   background-color: #FFFACD;
 }
 
 .headimg {
@@ -23,6 +23,12 @@ body {
     background-color: #98FB98;
     border-radius: 10px;
     margin: 5px;
+    animation-name: move;
+    animation-duration: 3s;
+}
+
+.headimg2 {
+    display: none;
 }
 
 .weatherimg {
@@ -31,6 +37,11 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.whatweather {
+    text-align: center;
+    font-weight: bolder;
 }
 
 .weatherconts {
@@ -43,12 +54,15 @@ body {
     margin-left: 3px;
 }
 
+.whatweather {
+    color: white;
+}
 .timetext {
     text-align: center;
 }
 
 .mapcont {
-    margin-top: 20px;
+    margin-top: 35px;
 }
 
 .map {
@@ -76,6 +90,7 @@ body {
     background-color: #999999;
     padding: 12px;
     border-radius: 10px;
+    border: 4px solid #98FB98;
     margin-top: 20px;
 }
 
@@ -98,27 +113,21 @@ button:focus{
     outline: none;
 }
 
-.rtbtn {
+.btn {
     border: 2px solid #696969;
     border-radius: 10px;
     width: 100%;
-    height: 60px;
+    height: 50px;
     background-color: #90EE90;
     margin: 10px auto;
+    color: white;
 }
 
-/* .drop {
-    float: left;
-    display: block;
-    margin: 0 auto;
-    height: 40px;
+.drop {
+    margin-top: 15px;
     border-radius: 10px;
-    background-color: #999999;
-    border: 2px solid #696969;
-    font-weight: bold;
-    width: 50%;
-    padding: 5px;
-} */
+    height: 40px;
+}
 
 .opbtn {
     /* clear: both; */
@@ -182,16 +191,37 @@ button:focus{
     margin: 15px auto;
 }
 
+@keyframes move {
+    from {margin-left: 100%;}
+    to {margin-left: 5px;}
 
-
+    from {background-color: transparent;}
+    to {background-color: #98FB98;}
+}
 
 /* 
     MEDIA QUERIES
 */
 @media screen and (max-width: 720px) {
     body {
-        background-color: #87CEFA;
         background-image: none;
+    }
+
+    .headrow {
+        background-image: url("../images/nsmallb.jpg");
+        background-repeat: no-repeat;
+        background-size: 100% 300px;
+        width: 100%;
+        padding: 5px;
+        margin: 0 auto;
+    }
+
+    .headimg1 {
+        display: none;
+    }
+
+    .headimg2 {
+        display: block;
     }
 }
 
@@ -201,11 +231,16 @@ button:focus{
         margin: 0 auto;
     }
 
-    .weatherconts {
-        float: left;
-    }
     body {
         background-size: 100% 10%;
+    }
+
+    .container {
+        padding: 2px;
+    }
+
+    .headtext {
+        color: #98FB98;
     }
 }
 
@@ -215,6 +250,6 @@ button:focus{
     }
 
     body {
-        background-size: 100% 33%;
+        background-size: 100% 400px;
     }
 }
