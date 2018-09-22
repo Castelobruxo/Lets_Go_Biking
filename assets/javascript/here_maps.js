@@ -163,9 +163,6 @@
         if (!result.response) 
             return;
 
-        console.log(result.response.length)
-
-
         // clear the markers and route line from the previous calculation, if any
         map.removeObjects(mapObjects);
 
@@ -321,7 +318,7 @@
                 $('.localoptions').append(row);
 
         }
-        console.log($('#local-options').hasClass('hide'));
+
         if ($('#local-options').hasClass('hide'))
             $('#local-options').removeClass('hide');
     }
