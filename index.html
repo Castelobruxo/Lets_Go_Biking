@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+
+  <!-- styles -->
+  <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1533195059" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
+    crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://js.cit.api.here.com/v3/3.0/mapsjs-ui.css" />
+  <link rel='stylesheet' href='assets/css/style.css'>
+
+  <!-- scripts -->
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-places.js"></script>
+
+  <title>Let's Go Biking!</title>
+</head>
+
+<body>
+  <img src="assets/images/bicycle.png" alt="bike" class="headimg headimg1">
+  <div class="container">
+    <div class="row headrow">
+      <img src="assets/images/bicycle.png" alt="bike" class="headimg headimg2">
+      <div class="col-xs-12 col-sm-4 col-md-6">
+        <div class="head">
+          <h1 class="headtext">Let's Go Biking!</h1>
+          <p class="headtext lowert">Plan a trip and bike your city with confidence!</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-8 col-md-6">
+        <div class="weatherconts">
+          <p class="t1 timetext">9:00</p>
+          <img src="assets/images/moon.png" alt="bike" class="weatherimg">
+        </div>
+        <div class="weatherconts">
+          <p class="t2 timetext">6:00</p>
+          <img src="assets/images/cloud.png" alt="bike" class="weatherimg">
+        </div>
+        <div class="weatherconts">
+          <p class="t3 timetext">3:00</p>
+          <img src="assets/images/rain.png" alt="bike" class="weatherimg">
+        </div>
+        <div class="weatherconts">
+          <p class="t4 timetext">12:00</p>
+          <img src="assets/images/sun.png" alt="bike" class="weatherimg">
+        </div>
+        <div class="col-md-2 col-xs-0"></div>
+      </div>
+
+      <!-- <div class="row"> -->
+      <!-- <div class="col-12"> -->
+      <!-- <div id='local-options' class="localoptionbox "> -->
+    </div>
+    <div class="enterroute">
+        <div class="row ">
+          <div class="col-md-6 col-xs-12 text-center">
+            <p class="whatweather">Enter starting point:</p>
+            <form class='form-inline' style='text-align:center;'>
+              <div class="form-group">
+                <input type="text" id='start-location' class="rinput startinput form-control">
+              </div>
+              <div class="form-group">
+                <input type="button" id='start-location-submit' class="btn btn-success " value="Set Start">
+              </div>
+            </form>
+          </div>
+          <div class="col-md-6 col-xs-12 text-center" >
+            <p class="whatweather">Enter destination or find a POI:</p>
+            <form class='form-inline' style='text-align:center;'>
+              <div class="form-group">
+                <input type="text" id='end-location' class="rinput endinput form-control">
+              </div>
+              <div class="form-group">
+                <input type="button" id='end-location-submit' class="btn btn-success " value="Set End">
+              </div>
+            </form>
+            </form>
+          </div>
+        </div>
+
+      <hr>
+
+      <div class="row" id='nearby-poi'>
+        <div class="col-md-6 col-xs-12">
+          <select id='nearby-select' class="drop form-control" style=''>
+            <!-- <option value="0">Suggested Locations:</option> -->
+            <option value="0">Please select a POI type (starting point required):</option>
+            <option value="eat-drink">Food</option>
+            <option value="shopping">Shopping</option>
+            <option value="leisure-outdoor">Parks and Rec</option>
+            <option value="sights-musuems">Museums and Sights</option>
+          </select>
+        </div>
+        <div class="col-md-6 col-xs-12  ">
+          <button class="gobtn opbtn btn btn-success toggle-btn">Toggle Results</button>
+          <!-- <button class="clearbtn opbtn btn btn-success">Clear</button> -->
+        </div>
+        <div class="col-md-2 col-xs-0"></div>
+      </div>
+
+      <!-- <div class="row"> -->
+      <!-- <div class="col-12"> -->
+      <div id='local-options' class="localoptionbox hide">
+        <div class="localoptions">
+
+        </div>
+      </div>
+      <!-- </div> -->
+      <!-- </div> -->
+
+
+      <hr>
+
+      <!-- Button to calculate the route -->
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+          <button id='calculate-route' class="rtbtn btn">Find my route!</button>
+        </div>
+      </div>
+    </div> <!-- end enterroute -->
+
+    <!-- <div class="enterroute">
+      <div class="row">
+        <div class="col-sm-2">
+          <p class="whatweather">Starting Point:</p>
+        </div>
+        <div class="col-sm-3">
+          <input type="text" class="rinput startinput">
+        </div>
+        <div class="col-sm-2">
+          <p class="whatweather">Ending Point:</p>
+        </div>
+        <div class="col-sm-3">
+          <input type="text" class="rinput endinput">
+        </div>
+        <div class="col-sm-2">
+          <button class="rtbtn">Get Route!</button>
+        </div>
+      </div>
+    </div> -->
+    <!-- 
+  <div class="localsearch">
+    <div class="row">
+      <div class="col-sm-12">
+        <select id='nearby-select' class="drop">
+          <option value="0">Suggested Locations:</option>
+          <option value="eat-drink">Food</option>
+          <option value="shopping">Shopping</option>
+          <option value="leisure-outdoor">Parks and Rec</option>
+          <option value="sights-musuems">Museums and Sights</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <button class="gobtn opbtn">Look</button>
+        <button class="clearbtn opbtn">Clear</button>
+      </div>
+    </div>
+  </div> -->
+
+
+    <div class="mapcont">
+      <div class="row ">
+        <div class=' col-md-6 col-sm-12' style="height:350px;">
+          <div id="map" style='height:100%;width:100%;'></div>
+        </div>
+
+        <div class=" col-md-6 col-sm-12 direction-col">
+          <div style='width:100%;text-align:center;'>
+            <h4 style='margin-top:5px;'>Next instruction:</h4>
+            <input type='button' class='btn btn-success' value='Next!' id='get-next-instruction'>
+            <div id="next-instruction">---</div>
+          </div>
+          <div id="all-instructions">
+            <p style='color:gray;width:60%;margin: 0 auto;margin-top:20%;text-align:center;'>Your directions will
+              appear here when you create a new route!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- scripts -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" charset="UTF-8" src='assets/javascript/here_maps.js'></script>
+  <script src="assets/javascript/app.js"></script>
+</body>
+
+</html>
