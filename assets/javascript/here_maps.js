@@ -105,6 +105,7 @@
     // Define a callback function to process the geocoding response:
     var setStartGeoPoints = function (result) {
 
+
         var startInput = $('#start-location');
         startInput.removeClass('input-error');
         startInput.removeClass('input-ok');
@@ -137,6 +138,7 @@
     };
     // Define a callback function to process the geocoding response:
     var setEndGeoPoints = function (result) {
+
 
         var endInput = $('#end-location');
         endInput.removeClass('input-error');

@@ -6,6 +6,7 @@
     border: 3px solid rgba(255, 0, 0, 0.4);
 }
 .input-ok {
+
     border: 3px solid rgba(0,255,0,0.5);
 }
 .loc-error {
@@ -28,21 +29,31 @@ body {
     background-color: #98FB98;
     border-radius: 10px;
     margin: 5px;
+}
+
+.headimg1{
+
     animation-name: move;
     animation-duration: 3s;
 }
 
 .headimg2 {
     display: none;
+
 }
 
-.weatherimg {
-    width: 40px;
-    height: 40px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+#weatherimg-0,
+#weatherimg-1,
+#weatherimg-2,
+#weatherimg-3 {
+    width: 50px;
+    height: 50px;
+
+    animation-name: move;
+    animation-duration: 3s;
 }
+
+
 
 .whatweather {
     text-align: center;
@@ -64,6 +75,17 @@ body {
 }
 .timetext {
     text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 0;
+}
+
+#temp0,
+#temp1,
+#temp2,
+#temp3 {
+    text-align: center;
+
 }
 
 .mapcont {
@@ -85,6 +107,8 @@ body {
     height: 350px;
     /* background: rgb(220, 220, 220); */
     background-image: linear-gradient(to bottom, rgb(255,255,255), rgb(120,120,120) ,rgb(36, 36, 36));
+
+    background-image: linear-gradient(to bottom, rgb(255,255,255), rgb(255,255,255), #C0C0C0,rgb(120,120,120) , rgb(36, 36, 36));
     overflow-y: scroll;
 }
 .direction-col::-webkit-scrollbar {
@@ -92,9 +116,9 @@ body {
 }
 
 .enterroute {
-    /* background-color: #999999; */
-    background-color: #444;
+    background-color: #999999;
     padding: 12px;
+    border-radius: 10px;
     border: 4px solid #98FB98;
     margin-top: 20px;
 }
@@ -177,6 +201,7 @@ button:focus{
     padding: 4px;
     /* height: 125px; */
 }
+
 .poi-card:hover {
     cursor: pointer;
 }
@@ -198,6 +223,7 @@ button:focus{
 .data-form-btn {
     margin: 15px auto;
 }
+
 
 .footer {
     width: 100%;
@@ -228,7 +254,9 @@ button:focus{
     to {margin-left: 5px;}
 
     from {background-color: transparent;}
-    to {background-color: #98FB98;}
+    to {background-color: transparent;}
+    from {border: 0px solid white;}
+    to {border: 0px solid white;}
 }
 
 /* 
