@@ -102,14 +102,20 @@
     // Define a callback function to process the geocoding response:
     var setStartGeoPoints = function (result) {
 
-        $('#start-location').removeClass('input-error');
+
+        var startInput = $('#start-location');
+        startInput.removeClass('input-error');
+        startInput.removeClass('input-ok');
+        $('.loc-error').addClass('hide');
 
         // console.log(result);
         if (!result.Response.View.length) {
-            $('#start-location').addClass('input-error');
+            startInput.addClass('input-error');
+            $('.loc-error').removeClass('hide');
             return;
         }
-
+        startInput.addClass('input-ok');
+        
         var locations = result.Response.View[0].Result,
             marker;
 
@@ -130,13 +136,21 @@
     // Define a callback function to process the geocoding response:
     var setEndGeoPoints = function (result) {
 
-        $('#end-location').removeClass('input-error');
+
+        var endInput = $('#end-location');
+        endInput.removeClass('input-error');
+        endInput.removeClass('input-ok');
+        $('.loc-error').addClass('hide');
 
         // console.log(result.Response.View.length);
         if (!result.Response.length) {
-            $('#end-location').addClass('input-error');
+            endInput.addClass('input-error');
+            $('.loc-error').removeClass('hide');
             return;
         }
+        
+        endInput.addClass('input-ok');
+
 
         var locations = result.Response.View[0].Result,
             marker;
@@ -386,7 +400,8 @@
         });
     })
 
-    $('body').on('click', '.nearby-poi', function () {
+
+    $('body').on('click touchstart', '.nearby-poi', function () {
         var lat = $(this).attr('data-lat');
         var long = $(this).attr('data-long');
         var address = $(this).attr('data-address');

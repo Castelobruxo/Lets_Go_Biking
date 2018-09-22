@@ -20,12 +20,11 @@
   <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-places.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 
-
   <title>Let's Go Biking!</title>
 </head>
 
 <body>
-  <img src="assets/images/bicycle.png" alt="bike" class="headimg headimg1">
+  <img src="assets/images/bicyclerev.png" alt="bike" class="headimg headimg1">
   <div class="container">
     <div class="row headrow">
       <img src="assets/images/bicycle.png" alt="bike" class="headimg headimg2">
@@ -37,6 +36,7 @@
       </div>
       <div class="col-xs-12 col-sm-8 col-md-6">
         <div class="weatherconts">
+
           <p class="t3 timetext">9:00</p>
           <img src="assets/images/moon.png" alt="bike" id="weatherimg-3">
           <div id="temp3"></div>
@@ -55,6 +55,7 @@
           <p class="t0 timetext">12:00</p>
           <img src="assets/images/sun.png" alt="bike" id="weatherimg-0">
           <div id="temp0"></div>
+
         </div>
         <div class="col-md-2 col-xs-0"></div>
       </div>
@@ -86,8 +87,9 @@
                 <input type="button" id='end-location-submit' class="btn btn-success " value="Set End">
               </div>
             </form>
-            </form>
+
           </div>
+          <p class='loc-error hide'>That address was not valid... Please enter a street address and city or a street number, city, and state.</p>
         </div>
 
       <hr>
@@ -194,6 +196,17 @@
 
   </div>
 
+  
+  <div class="quotediv">
+    <p class="quote"></p>
+    <p class="author"></p>
+  </div>
+
+  <div class="footer">
+    <p class="foottxt">Castelobruxo &copy</p>
+  </div>
+
+
 
   <!-- scripts -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -201,6 +214,7 @@
   <script type="text/javascript" charset="UTF-8" src='assets/javascript/here_maps.js'></script>
   <script src="assets/javascript/app.js"></script>
   <script src="assets/javascript/logic.js"></script>
+  <script src="assets/javascript/quote.js"></script>
 </body>
 
 </html>

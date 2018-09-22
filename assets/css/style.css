@@ -6,7 +6,13 @@
     border: 3px solid rgba(255, 0, 0, 0.4);
 }
 .input-ok {
-    border: 1px solid rgba(0,255,0,0.5);
+
+    border: 3px solid rgba(0,255,0,0.5);
+}
+.loc-error {
+    width: 85%;
+    margin: 0 auto;
+    color: rgba(255, 0,0,0.75);
 }
 
 body {
@@ -23,12 +29,17 @@ body {
     background-color: #98FB98;
     border-radius: 10px;
     margin: 5px;
+}
+
+.headimg1{
+
     animation-name: move;
     animation-duration: 3s;
 }
 
 .headimg2 {
     display: none;
+
 }
 
 #weatherimg-0,
@@ -37,10 +48,12 @@ body {
 #weatherimg-3 {
     width: 50px;
     height: 50px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+
+    animation-name: move;
+    animation-duration: 3s;
 }
+
+
 
 .whatweather {
     text-align: center;
@@ -72,6 +85,7 @@ body {
 #temp2,
 #temp3 {
     text-align: center;
+
 }
 
 .mapcont {
@@ -93,6 +107,8 @@ body {
     height: 350px;
     /* background: rgb(220, 220, 220); */
     background-image: linear-gradient(to bottom, rgb(255,255,255), rgb(120,120,120) ,rgb(36, 36, 36));
+
+    background-image: linear-gradient(to bottom, rgb(255,255,255), rgb(255,255,255), #C0C0C0,rgb(120,120,120) , rgb(36, 36, 36));
     overflow-y: scroll;
 }
 .direction-col::-webkit-scrollbar {
@@ -186,6 +202,10 @@ button:focus{
     /* height: 125px; */
 }
 
+.poi-card:hover {
+    cursor: pointer;
+}
+
 .hide {
     display: none;
 }
@@ -204,12 +224,39 @@ button:focus{
     margin: 15px auto;
 }
 
+
+.footer {
+    width: 100%;
+    height: 60px;
+    background-color:#90EE90;
+    border-top: 6px solid #696969;
+    padding: 15px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.foottxt {
+    color: #696969;
+    font-weight: bolder;
+}
+
+.quotediv {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.quote {
+    font-style: italic;
+}
+
 @keyframes move {
     from {margin-left: 100%;}
     to {margin-left: 5px;}
 
     from {background-color: transparent;}
-    to {background-color: #98FB98;}
+    to {background-color: transparent;}
+    from {border: 0px solid white;}
+    to {border: 0px solid white;}
 }
 
 /* 
@@ -254,6 +301,10 @@ button:focus{
 
     .headtext {
         color: #98FB98;
+    }
+
+    .poi-card {
+        margin: 5px auto;
     }
 }
 
