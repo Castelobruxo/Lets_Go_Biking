@@ -35,7 +35,7 @@ $(document).ready(function() {
                     var time = moment.unix(response.list[i].dt)
                     $(".t" + i).text(time.format("hh:mm A"))
 
-                    
+
                         // checks weather code from open weathermap API and prints relevent icon to screen
                     if (response.list[i].weather[0].id > 800) {
                         $("#weatherimg-" + i).attr("src", "http://openweathermap.org/img/w/03d.png")
@@ -44,18 +44,18 @@ $(document).ready(function() {
                             $('#weatherimg-' + i).attr("src", "http://openweathermap.org/img/w/01d.png")
                         
                         } else if (response.list[i].weather[0].id >= 200 && response.list[i].weather[0].id < 300) {
-                            $("#weatherimg-" + i).attr("src", "http://openweathermap.org/img/w01d.png")
+                            $("#weatherimg-" + i).attr("src", "http://openweathermap.org/img/w/11d.png")
                             
                         
                         } else if (response.list[i].weather[0].id >= 300 && response.list[i].weather[0].id < 400) {
-                            $("weatherimg-" + i).attr("src", "http://openweathermap.org/img/w01d.png")
+                            $("weatherimg-" + i).attr("src", "http://openweathermap.org/img/w/09d.png")
                             
                         
                         } else if (response.list[i].weather[0].id >= 500 && response.list[i].weather[0].id < 600) {
-                            $("#weatherimg-" + i).attr("src", "http://openweathermap.org/img/w/09d.png")
+                            $("#weatherimg-" + i).attr("src", "http://openweathermap.org/img/w/13d.png")
                         
                         } else if (response.list[i].weather[0].id >= 600 && response.list[i].weather[0].id < 700) {
-                            $("weatherimg-" + i).attr("src", "http://openweathermap.org/img/w01d.png")
+                            $("weatherimg-" + i).attr("src", "http://openweathermap.org/img/w/01d.png")
                         }
                 }
                 
