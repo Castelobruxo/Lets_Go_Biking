@@ -104,7 +104,7 @@
 
         $('#start-location').removeClass('input-error');
 
-        console.log(result);
+        // console.log(result);
         if (!result.Response.View.length) {
             $('#start-location').addClass('input-error');
             return;
@@ -132,7 +132,7 @@
 
         $('#end-location').removeClass('input-error');
 
-        console.log(result);
+        // console.log(result.Response.View.length);
         if (!result.Response.length) {
             $('#end-location').addClass('input-error');
             return;
@@ -400,7 +400,8 @@
 
         $('#end-location').val(name + ': ' + address);
         // console.log(data);
-        $('#local-options').toggle('hide');
+        $('#local-options').addClass('hide');
+
     })
 
     $('#get-next-instruction').on('click', function () {
