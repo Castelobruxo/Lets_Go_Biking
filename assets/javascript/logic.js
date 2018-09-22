@@ -1,5 +1,3 @@
-var timeParse
-
 
 $(document).ready(function() {
 
@@ -32,31 +30,14 @@ $(document).ready(function() {
                 for (var i = 0; i < 4; i++) {
                     
                     // uses Moment.js to change time code into military time
+                    $("#temp" + i).text(Math.floor(response.list[i].main.temp) + "\xB0" + "F")
+                    
+                    
                     var time = moment.unix(response.list[i].dt)
                     $(".t" + i).text(time.format("hh:mm A"))
 
+                    $("#weatherimg-" + i).attr("src", "http://openweathermap.org/img/w/" + response.list[i].weather[0].icon + ".png")
 
-                        // checks weather code from open weathermap API and prints relevent icon to screen
-                    if (response.list[i].weather[0].id > 800) {
-                        $("#weatherimg-" + i).attr("src", "http://openweathermap.org/img/w/03d.png")
-                        
-                        } else if (response.list[i].weather[0].id === 800) {
-                            $('#weatherimg-' + i).attr("src", "http://openweathermap.org/img/w/01d.png")
-                        
-                        } else if (response.list[i].weather[0].id >= 200 && response.list[i].weather[0].id < 300) {
-                            $("#weatherimg-" + i).attr("src", "http://openweathermap.org/img/w/11d.png")
-                            
-                        
-                        } else if (response.list[i].weather[0].id >= 300 && response.list[i].weather[0].id < 400) {
-                            $("weatherimg-" + i).attr("src", "http://openweathermap.org/img/w/09d.png")
-                            
-                        
-                        } else if (response.list[i].weather[0].id >= 500 && response.list[i].weather[0].id < 600) {
-                            $("#weatherimg-" + i).attr("src", "http://openweathermap.org/img/w/13d.png")
-                        
-                        } else if (response.list[i].weather[0].id >= 600 && response.list[i].weather[0].id < 700) {
-                            $("weatherimg-" + i).attr("src", "http://openweathermap.org/img/w/01d.png")
-                        }
                 }
                 
             });

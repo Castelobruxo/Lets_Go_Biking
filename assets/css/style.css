@@ -63,6 +63,15 @@ body {
 .timetext {
     text-align: center;
     font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 0;
+}
+
+#temp0,
+#temp1,
+#temp2,
+#temp3 {
+    text-align: center;
 }
 
 .mapcont {
