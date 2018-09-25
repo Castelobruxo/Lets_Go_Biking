@@ -68,6 +68,8 @@ A web app to create a bike route and check the weather
         - One feature we thought of but did not have the time to do was to create a 'Previous' button for the directions box. If a user accidentally hit 'Next', they could just hit the previous button to go back and continue their route.
         - It would also be nice to have something like intelisense for the search bar so that as a user types, it suggests addresses.  This would eliminate some errors since it would provide valid addresses instead of the user typing in an address and missing a character or two.
         - Another feature we wanted to implement was a random route calculator.  The idea behind it was that the user could tell the app that they wanted to go for a 10 mile bike ride round trip and it would find a random route for them to ride that would be about 10 miles long.
+    * Other
+        - We also wanted to create user accounts so that users could save a route to their favorites for later viewing or they could share the route on social media so that friends/family/followers can see what they are doing.
 
 
 
