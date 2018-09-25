@@ -404,8 +404,12 @@
           });
       })
 
+      var touchMove;
       // get the data from a POI when the div is clicked and change the destination to that POI
       $('body').on('click touchend', '.nearby-poi', function () {
+          if (touchMove) 
+            return;
+
           var lat = $(this).attr('data-lat');
           var long = $(this).attr('data-long');
           var address = $(this).attr('data-address');
@@ -418,6 +422,12 @@
           $('#end-location').val(address);
           $('#local-options').addClass('hide');
 
+      })
+      $('body').on('touchmove', '.nearby-poi', function () {
+        touchMove = true;
+      })
+      $('body').on('touchstart', '.nearby-poi', function () {
+        touchMove = false;
       })
 
       $('#get-next-instruction').on('click', function () {
