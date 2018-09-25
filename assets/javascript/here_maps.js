@@ -303,7 +303,7 @@
               var cardText = $('<div>')
                   .addClass('card-text')
                   .html('Distance: ' + nearby[i].distance +
-                      'Address: ' + nearby[i].vicinity);
+                      '<br />Address: ' + nearby[i].vicinity);
 
               cardBody.append(cardTitle)
               cardBody.append(cardText)
