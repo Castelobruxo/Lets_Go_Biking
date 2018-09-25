@@ -288,19 +288,42 @@
                       .addClass('row')
               }
 
-              var text = $('<div>')
-                  .addClass('poi-card')
-                  .html(
-                      'Name: ' + nearby[i].title +
-                      // '<br />Coords: ' + nearby[i].position[0] + ',' + nearby[i].position[1] +
-                      '<br />Distance: ' + '' + nearby[i].distance +
-                      '<br />Address: ' + nearby[i].vicinity
-                  )
+              var card = $('<div>')
+                  .addClass('card')
+                  .attr('style', 'width: 100%');
+
+              var cardBody = $('<div>')
+                  .addClass('card-body');
+
+              var cardTitle = $('<h5>')
+                  .addClass('card-title')
+                  .attr('style', 'font-weight: bold')
+                  .html(nearby[i].title)
+
+              var cardText = $('<div>')
+                  .addClass('card-text')
+                  .html('Distance: ' + nearby[i].distance +
+                      'Address: ' + nearby[i].vicinity);
+
+              cardBody.append(cardTitle)
+              cardBody.append(cardText)
+              card.append(cardBody);
+
+
+              //   var text = $('<div>')
+              //       .addClass('poi-card')
+              //       .html(
+              //           'Name: ' + nearby[i].title +
+              //           // '<br />Coords: ' + nearby[i].position[0] + ',' + nearby[i].position[1] +
+              //           '<br />Distance: ' + '' + nearby[i].distance +
+              //           '<br />Address: ' + nearby[i].vicinity
+              //       )
 
               var div = $('<div>')
                   .addClass('col-md-3 col-sm-6 col-xs-12 nearby-poi')
                   // .attr('style', 'margin: 2px 0px')
-                  .html(text)
+                //   .html(text)
+                  .html(card)
                   .attr('data-lat', nearby[i].position[0])
                   .attr('data-long', nearby[i].position[1])
                   .attr('data-name', nearby[i].title)
