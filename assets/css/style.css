@@ -106,7 +106,7 @@ body {
     border-bottom: none;
     height: 350px;
     /* background: rgb(220, 220, 220); */
-    background-image: linear-gradient(to bottom, rgb(255,255,255), rgb(120,120,120) ,rgb(36, 36, 36));
+    /* background-image: linear-gradient(to bottom, rgb(255,255,255), rgb(120,120,120) ,rgb(36, 36, 36)); */
 
     background-image: linear-gradient(to bottom, rgb(255,255,255), rgb(255,255,255), #C0C0C0,rgb(120,120,120) , rgb(36, 36, 36));
     overflow-y: scroll;
@@ -201,9 +201,9 @@ button:focus{
 }
 
 .poi-card {
-    background-color: #ddd;
-    border-radius: 5px;
-    padding: 4px;
+    /* background-color: #ddd; */
+    /* border-radius: 5px; */
+    /* padding: 4px; */
     /* height: 125px; */
 }
 

@@ -26,6 +26,8 @@ A web app to create a bike route and check the weather
     * Riding on the same path every day gets very boring.  Therefore, we created an app that allows a user to easily find different bike routes around the city and also check the weather because no one wants to ride their bike in unsuitable conditions
 
 3. Design Process 
+    * General 
+        - We split up the team into a javascript team and a ui team.  Two of us worked on creating the page layout and displaying information and two of us worked on bringing in the APIs and getting the correct information, and making the page interactions work appropriately.
     * Maps API
         - The Google Maps API is now a paid subscription and we wanted to stay with a free version so we avoided that.  There is another app called Waze that has a very nice layout for getting directions.  I looked into their API but they did not have one.  They mainly had an SDK that you could use in an app.  You could embed their live map in a website or search for location but it did not provide the details that we wanted for our program.  We wanted to get each direction, the distance to the destination, and sometimes even find a point of interest around the starting location.  Waze did not prove to give these details.  
         - The third API is HERE Maps.  They have a very extensive API that gives you all the details you request.  You can createive an interactive map on your website, get map images, connect to a geocoder, set up geofencing parameters, find routes, traffic data, and much more.  For our project, we used the routing system, the geocoder (for getting coordinates of a given address), and an exploring function (to find nearby points of interest from a certain location).
