@@ -73,8 +73,3 @@ A web app to create a bike route and check the weather
 
 
 
-
-
-
-
-#### Informal Presentation
