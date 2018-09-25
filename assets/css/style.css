@@ -201,9 +201,9 @@ button:focus{
 }
 
 .poi-card {
-    background-color: #ddd;
-    border-radius: 5px;
-    padding: 4px;
+    /* background-color: #ddd; */
+    /* border-radius: 5px; */
+    /* padding: 4px; */
     /* height: 125px; */
 }
 
