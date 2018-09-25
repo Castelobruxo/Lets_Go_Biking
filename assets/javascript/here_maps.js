@@ -404,11 +404,14 @@
           });
       })
 
+      // is used to determine if a touch event on mobile phones is a touch and move (scrolling the page)
+      // or is just a plain touch (like a mouse click)
       var touchMove;
       // get the data from a POI when the div is clicked and change the destination to that POI
       $('body').on('click touchend', '.nearby-poi', function () {
-          if (touchMove) 
-            return;
+          // if the touch event is a move, or scroll, do not run this function  
+          if (touchMove)
+              return;
 
           var lat = $(this).attr('data-lat');
           var long = $(this).attr('data-long');
@@ -423,11 +426,14 @@
           $('#local-options').addClass('hide');
 
       })
+
+      // if the event is a move or scroll, set the touchMove to true so the event above does not run   
       $('body').on('touchmove', '.nearby-poi', function () {
-        touchMove = true;
+          touchMove = true;
       })
+      //   if the event is a click, set touchMove to false so the function above runs
       $('body').on('touchstart', '.nearby-poi', function () {
-        touchMove = false;
+          touchMove = false;
       })
 
       $('#get-next-instruction').on('click', function () {
