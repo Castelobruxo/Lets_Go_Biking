@@ -289,7 +289,7 @@
               }
 
               var card = $('<div>')
-                  .addClass('card')
+                  .addClass('card poi-card')
                   .attr('style', 'width: 100%');
 
               var cardBody = $('<div>')
