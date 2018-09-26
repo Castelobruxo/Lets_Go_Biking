@@ -1,6 +1,9 @@
 # Lets_Go_Biking
 A web app to create a bike route and check the weather
 
+## Contributors
+Richard Dobrzeniecki, Larry Lightner, Matthew Frey, Jason Barnett
+
 
 ### APIs
 1. HERE maps 

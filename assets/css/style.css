@@ -158,15 +158,7 @@ button:focus{
     height: 40px;
 }
 
-.opbtn {
-    /* clear: both; */
-    /* width: 60px; */
-    /* height: 50px; */
-    /* margin-top: 5px; */
-    /* border: 2px solid #696969; */
-    /* border-radius: 10px; */
-    /* background-color: #90EE90; */
-} 
+
 
 #start-current-loc > img {
     max-width: 100%;
@@ -198,13 +190,6 @@ button:focus{
 }
 .direction-hr {
     margin: 2px;
-}
-
-.poi-card {
-    /* background-color: #ddd; */
-    /* border-radius: 5px; */
-    /* padding: 4px; */
-    /* height: 125px; */
 }
 
 .poi-card:hover {
